@@ -10,14 +10,14 @@ const Wrapper = styled.ul`
   justify-content: flex-start;
   align-items: flex-start;
   margin: 0;
-  padding: 16px 16px 164px;
+  padding: 16px 16px 108px;
   list-style: none;
 `
 
 const Chat = ({ messages = [] }) => (
   <Wrapper>
-    { messages.map(message => 
-      <ChatBubble key={message.id} message={message} />) 
+    { messages.map(message =>
+      <ChatBubble key={message.id} message={message} />)
     }
   </Wrapper>
 )

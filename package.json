@@ -7,7 +7,9 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=produciton node server.js",
-    "deploy": "now -e NODE_ENV=production"
+    "docker:build": "docker build -t registry.gitlab.com/nanberg/hej .",
+    "docker:push": "docker push registry.gitlab.com/nanberg/hej",
+    "docker": "npm run docker:build && npm run docker:push"
   },
   "dependencies": {
     "axios": "^0.16.2",

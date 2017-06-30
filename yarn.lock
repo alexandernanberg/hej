@@ -3594,9 +3594,13 @@ styled-jsx@1.0.6:
     string-hash "1.1.1"
     stylis "3.1.5"
 
-stylis@3.1.5, stylis@^3.0.19:
+stylis@3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.1.5.tgz#c585186286aaa79856c9ac62bbb38113923edda3"
+
+stylis@^3.0.19:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.2.0.tgz#13a84d4c44d9c31f7ff231626a53135daa87c440"
 
 supports-color@^2.0.0:
   version "2.0.0"

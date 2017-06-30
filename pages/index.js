@@ -23,7 +23,12 @@ class Home extends React.Component {
 
   state = {
     message: '',
-    messages: this.props.messages
+    messages: this.props.messages,
+  }
+
+  keyMap = {
+    13: false,
+    16: false,
   }
 
   componentDidMount() {
@@ -41,16 +46,39 @@ class Home extends React.Component {
     window.scrollTo(0, document.body.scrollHeight);
   }
 
-  handleChange = ({ target }) => {
-    if (target.value.length > 1600) return
-    this.setState({ message: target.value })
+  shouldSubmit(keyCode, state) {
+    if (keyCode !== 13 && keyCode !== 16) {
+      return false
+    }
+
+    this.keyMap = {
+      ...this.keyMap,
+      [keyCode]: state,
+    }
+
+    if (this.keyMap[13] && !this.keyMap[16]) {
+      return true
+    }
+
+    return false
   }
 
   handeKeyDown = (event) => {
-    if (event.keyCode === 13) {
+    const shouldSubmit = this.shouldSubmit(event.keyCode, true)
+
+    if (shouldSubmit) {
       event.preventDefault()
       this.sendMessage()
     }
+  }
+
+  handleKeyUp = (event) => {
+    this.shouldSubmit(event.keyCode, false)
+  }
+
+  handleChange = ({ target }) => {
+    if (target.value.length > 1600) return
+    this.setState({ message: target.value })
   }
 
   handleSubmit = (event) => {
@@ -88,10 +116,10 @@ class Home extends React.Component {
           <TextField
             onChange={this.handleChange}
             onKeyDown={this.handeKeyDown}
-            type="text"
+            onKeyUp={this.handleKeyUp}
             autoFocus
             value={this.state.message}
-            placeholder="Write something..."
+            placeholder="Say something..."
           />
         </form>
       </Wrapper>

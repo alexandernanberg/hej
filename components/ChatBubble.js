@@ -5,7 +5,7 @@ import moment from 'moment'
 const Wrapper = styled.li`
   position: relative;
   display: inline-block;
-  padding: 16px 32px;
+  padding: 8px 16px;
   margin-bottom: 44px;
   max-width: 50%;
   border-radius: 32px 32px 32px 0;
