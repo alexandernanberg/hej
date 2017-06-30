@@ -6,10 +6,12 @@ const Wrapper = styled.li`
   position: relative;
   display: inline-block;
   padding: 16px 32px;
-  margin-bottom: 32px;
+  margin-bottom: 44px;
   max-width: 50%;
-  border-radius: 24px 24px 24px 0;
+  border-radius: 32px 32px 32px 0;
   background-color: #3498db;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 `
 
 const Text = styled.p`

@@ -5,10 +5,12 @@ import ChatBubble from './ChatBubble'
 const Wrapper = styled.ul`
   display: flex;
   flex-flow: column wrap;
+  max-width: 100vw;
+  overflow: hidden;
   justify-content: flex-start;
   align-items: flex-start;
   margin: 0;
-  padding: 16px 16px 112px;
+  padding: 16px 16px 164px;
   list-style: none;
 `
 

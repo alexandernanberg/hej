@@ -11,10 +11,6 @@ const Wrapper = styled.div`
   min-height: 100vh;
 `
 
-const Form = styled.form`
-
-`
-
 class Home extends React.Component {
   static async getInitialProps({ req }) {
     const { data } = await axios('http://localhost:3000/messages')
@@ -46,18 +42,30 @@ class Home extends React.Component {
   }
 
   handleChange = ({ target }) => {
-    if (target.value > 50) return
+    if (target.value.length > 1600) return
     this.setState({ message: target.value })
+  }
+
+  handeKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault()
+      this.sendMessage()
+    }
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    if (!this.state.message.length) return
+    this.sendMessage()
+  }
+
+  sendMessage() {
+    const text = this.state.message
+    if (!text.length || text === ' ') return
 
     const message = {
       id: Date.now(),
-      text: this.state.message,
-      time: new Date()
+      time: new Date(),
+      text,
     }
 
     this.socket.emit('message', message)
@@ -76,14 +84,16 @@ class Home extends React.Component {
     return (
       <Wrapper>
         <Chat messages={this.state.messages} />
-        <Form onSubmit={this.handleSubmit}>
-          <TextField 
+        <form onSubmit={this.handleSubmit}>
+          <TextField
             onChange={this.handleChange}
+            onKeyDown={this.handeKeyDown}
             type="text"
+            autoFocus
             value={this.state.message}
             placeholder="Write something..."
           />
-        </Form>
+        </form>
       </Wrapper>
     )
   }

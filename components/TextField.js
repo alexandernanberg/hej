@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   background-color: white;
 `
 
-const Input = styled.input`
+const Input = styled.textarea`
   display: block;
   flex-grow: 1;
   height: auto;
@@ -30,6 +30,7 @@ const Input = styled.input`
   color: #444;
   outline: none;
   resize: none;
+  white-space: pre-line;
 `
 
 const Button = styled.button`
@@ -37,8 +38,8 @@ const Button = styled.button`
   height: 4rem;
   border-radius: 50%;
   border: 0;
-  background-color: #2980b9;
   margin: auto 16px;
+  background-color: white;
   cursor: pointer;
 `
 
@@ -46,7 +47,7 @@ const TextField = (props) => (
   <Wrapper>
     <Input {...props} />
     <Button>
-      <SendIcon fill="white"/>
+      <SendIcon fill="#2980b9"/>
     </Button>
   </Wrapper>
 )
