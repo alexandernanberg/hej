@@ -1,0 +1,27 @@
+{
+  "name": "hej",
+  "version": "1.0.0",
+  "author": "Alexander Nanberg (https://alexandernanberg.com)",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=produciton node server.js",
+    "deploy": "now -e NODE_ENV=production"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "babel-plugin-inline-react-svg": "^0.4.0",
+    "babel-plugin-styled-components": "^1.1.6",
+    "express": "^4.15.3",
+    "glamor": "^2.20.25",
+    "moment": "^2.18.1",
+    "next": "latest",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3",
+    "style-loader": "^0.18.2",
+    "styled-components": "^2.1.0"
+  }
+}
