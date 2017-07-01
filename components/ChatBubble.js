@@ -6,7 +6,7 @@ const Wrapper = styled.li`
   position: relative;
   display: inline-block;
   padding: 8px 16px;
-  margin-bottom: 44px;
+  margin-bottom: 32px;
   max-width: 50%;
   border-radius: 32px 32px 32px 0;
   background-color: #3498db;

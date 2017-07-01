@@ -7,22 +7,22 @@ const Wrapper = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 12px 0;
+  padding: 0;
   display: flex;
   flex-flow: row-wrap;
   align-items: center;
   font-size: 1.3rem;
   color: #222;
-  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
-  background-color: white;
+  background-color: #f6f6f6;
+  // box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
+  border-top: solid 1px #efefef;
 `
 
 const Input = styled.textarea`
   display: block;
   flex-grow: 1;
   height: auto;
-  padding: 16px;
-  border: solid 1px #a0a0a0;
+  padding: 16px 24px;
   border-radius: 3px;
   border: 0;
   border-radius: 0;
@@ -31,6 +31,8 @@ const Input = styled.textarea`
   outline: none;
   resize: none;
   white-space: pre-line;
+  background-color: transparent;
+  // border: solid 1px #e0e0e0;
 `
 
 const Button = styled.button`
@@ -39,7 +41,7 @@ const Button = styled.button`
   border-radius: 50%;
   border: 0;
   margin: auto 16px;
-  background-color: white;
+  background-color: transparent;
   cursor: pointer;
 `
 
@@ -47,7 +49,7 @@ const TextField = (props) => (
   <Wrapper>
     <Input {...props} />
     <Button>
-      <SendIcon fill="#2980b9"/>
+      <SendIcon width="32px" height="32px" fill="#2980b9"/>
     </Button>
   </Wrapper>
 )

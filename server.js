@@ -11,16 +11,55 @@ const messages = [
   { id: Date.now(), text: 'Hej 👋', time: new Date() },
 ]
 
+const userCount = 0;
+
 io.on('connection', socket => {
-  socket.on('message', (data) => {
+  let addedUser = false;
+
+  socket.on('new message', (data) => {
     messages.push(data)
     socket.broadcast.emit('message', data)
   })
+
+  socket.on('add user', (username) => {
+    if (addedUser) return
+
+    socker.username = username
+    userCount =+ 1
+
+    socket.emit('login', {
+      userCount
+    });
+
+    socket.broadcast.emit('user joined', {
+      username: socket.username,
+      userCount
+    });
+  })
+
+  socket.on('start type', (data) => {
+
+  })
+
+  socket.on('disconnect', function () {
+    if (addedUser) {
+      userCount =- 1;
+
+      socket.broadcast.emit('user left', {
+        username: socket.username,
+        userCount
+      });
+    }
+  });
 })
 
 nextApp.prepare().then(() => {
   app.get('/messages', (req, res) => {
     res.json(messages)
+  })
+
+  app.get('/users', (req, res) => {
+    res.json(users)
   })
 
   app.get('*', (req, res) => {

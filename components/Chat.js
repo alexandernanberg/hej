@@ -10,7 +10,8 @@ const Wrapper = styled.ul`
   justify-content: flex-start;
   align-items: flex-start;
   margin: 0;
-  padding: 16px 16px 108px;
+  padding: 16px;
+  margin-bottom: 32px;
   list-style: none;
 `
 

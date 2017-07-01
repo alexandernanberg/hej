@@ -33,11 +33,11 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.socket = io()
-    this.socket.on('message', this.handleMessage)
+    this.socket.on('new message', this.handleMessage)
   }
 
   componentWillUnmount() {
-    this.socket.off('message', this.handleMessage)
+    this.socket.off('new message', this.handleMessage)
     this.socket.close()
   }
 
