@@ -1,31 +1,25 @@
+import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {
-  render() {
+  static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet()
-    const main = sheet.collectStyles(<Main />)
+    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
     const styleTags = sheet.getStyleElement()
+    return { ...page, styleTags }
+  }
+
+  render() {
     return (
-      <html>
+      <html lang="en">
         <Head>
           <title>Hej 👋</title>
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <style>{`
-            body {
-              margin: 0;
-              padding: 0;
-              font-family: BlinkMacSystemFont, Helvetica, sans-serif;
-              -webkit-font-smoothing: antialiased;
-            }
-          `}
-          </style>
-          {styleTags}
+          {this.props.styleTags}
         </Head>
         <body>
-          <div className='root'>
-            {main}
-          </div>
+          <Main />
           <NextScript />
         </body>
       </html>

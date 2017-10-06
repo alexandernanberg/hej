@@ -2,55 +2,35 @@ const app = require('express')()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const next = require('next')
+const { v4 } = require('uuid')
 
 const dev = process.env.NODE_ENV !== 'production'
 const nextApp = next({ dev })
 const nextHandler = nextApp.getRequestHandler()
 
 const messages = [
-  { id: Date.now(), text: 'Hej 👋', time: new Date() },
+  { id: v4(), text: 'Hej 👋', time: new Date() },
 ]
 
-const userCount = 0;
+const users = [
+  // { id: v4(), email: '' },
+]
 
-io.on('connection', socket => {
-  let addedUser = false;
+io.on('connection', (socket) => {
+  console.log('client connected')
 
-  socket.on('new message', (data) => {
-    messages.push(data)
-    socket.broadcast.emit('message', data)
-  })
+  socket.on('message', (text) => {
+    console.log('new message', text)
 
-  socket.on('add user', (username) => {
-    if (addedUser) return
-
-    socker.username = username
-    userCount =+ 1
-
-    socket.emit('login', {
-      userCount
-    });
-
-    socket.broadcast.emit('user joined', {
-      username: socket.username,
-      userCount
-    });
-  })
-
-  socket.on('start type', (data) => {
-
-  })
-
-  socket.on('disconnect', function () {
-    if (addedUser) {
-      userCount =- 1;
-
-      socket.broadcast.emit('user left', {
-        username: socket.username,
-        userCount
-      });
+    const message = {
+      id: v4(),
+      time: new Date(),
+      text,
     }
-  });
+
+    messages.push(message)
+    socket.emit('message', message)
+  })
 })
 
 nextApp.prepare().then(() => {
@@ -62,9 +42,7 @@ nextApp.prepare().then(() => {
     res.json(users)
   })
 
-  app.get('*', (req, res) => {
-    return nextHandler(req, res)
-  })
+  app.get('*', (req, res) => nextHandler(req, res))
 
   server.listen(3000, (err) => {
     if (err) throw err
