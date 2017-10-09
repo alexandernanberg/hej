@@ -31,8 +31,8 @@ const Time = styled.time`
   white-space: nowrap;
 `
 
-export default ({ message, ...rest }) => (
-  <Message {...rest}>
+export default ({ message, user, ...rest }) => (
+  <Message user={message.user.id === user.id} {...rest}>
     <Text>{message.text}</Text>
     <Time>{formatDistance(message.time, Date.now(), { addSuffix: true })}</Time>
   </Message>

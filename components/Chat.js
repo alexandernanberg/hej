@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import Message from './Message'
 import ChatField from '../components/ChatField'
-import { colors } from '../style'
 
 const Chat = styled.div`
   display: grid;
@@ -16,15 +15,16 @@ const List = styled.div`
   flex-flow: column wrap;
   justify-content: flex-start;
   align-items: flex-start;
+  flex-grow: 1;
   padding: 1.6rem;
-  margin-bottom: 3.2rem;
+  margin-bottom: 1.6rem;
 `
 
-export default ({ messages = [], message, onSubmit, onChange }) => (
+export default ({ messages = [], message, user, onSubmit, onChange }) => (
   <Chat>
     <List>
       { messages.map(msg =>
-        <Message key={msg.id} message={msg} />)
+        <Message key={msg.id} message={msg} user={user} />)
       }
     </List>
     <ChatField

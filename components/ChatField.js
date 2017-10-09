@@ -20,6 +20,7 @@ const ChatField = styled.form`
 const Input = styled(TextField)`
   flex-grow: 1;
   height: auto;
+  margin-bottom: 0;
 `
 
 const Button = styled.button`
