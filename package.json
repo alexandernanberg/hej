@@ -4,7 +4,7 @@
   "author": "Alexander Nanberg (https://alexandernanberg.com)",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon server.js --ignore .next --ignore components --ignore pages",
+    "dev": "nodemon server.js --ignore .next --ignore components --ignore pages --ignore style.js --ignore constants.js",
     "build": "next build",
     "start": "NODE_ENV=produciton node server.js",
     "docker:build": "docker build -t registry.gitlab.com/nanberg/hej .",
@@ -17,10 +17,12 @@
     "babel-plugin-styled-components": "^1.2.1",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
     "date-fns": "^2.0.0-alpha.7",
-    "express": "^4.16.1",
+    "express": "^4.16.2",
+    "js-cookie": "^2.1.4",
     "md5": "^2.2.1",
-    "next": "^4.0.0-beta.3",
+    "next": "^4.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "socket.io": "^2.0.3",
@@ -30,10 +32,10 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
-    "eslint": "^4.7.2",
-    "eslint-config-airbnb": "^15.1.0",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb": "^16.0.0",
     "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "nodemon": "^1.12.1"
   }

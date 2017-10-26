@@ -1,6 +1,5 @@
-import React from 'react'
 import styled from 'styled-components'
-import { colors } from '../style'
+import { colors } from '../../style'
 
 const TextField = styled.input`
   padding: 1rem 1.6rem;
@@ -8,14 +7,18 @@ const TextField = styled.input`
   border: solid 1px ${colors.gray300};
   border-radius: 50px;
   outline: none;
-  font-size: 1.4rem;
-  line-height: auto;
+  font-size: 1.6rem;
+  line-height: normal;
   color: ${colors.gray600};
   white-space: pre-line;
   resize: none;
   background-color: white;
+  box-shadow: none;
+  appearance: none;
+
+  &::placeholder {
+    color: ${colors.gray400};
+  }
 `
 
-export default props => (
-  <TextField type="text" {...props} />
-)
+export default TextField

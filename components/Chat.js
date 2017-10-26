@@ -4,10 +4,18 @@ import Message from './Message'
 import ChatField from '../components/ChatField'
 
 const Chat = styled.div`
-  display: grid;
-  align-content: space-between;
-  min-height: 100vh;
+  display: flex;
+  flex-flow: column wrap;
+  height: 100vh;
   background-color: white;
+`
+
+const Scroll = styled.div`
+  flex-grow: 1;
+  overflow-y: scroll;
+  width: 100%;
+  height: 400px;
+  -webkit-overflow-scrolling: touch;
 `
 
 const List = styled.div`
@@ -15,18 +23,25 @@ const List = styled.div`
   flex-flow: column wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  flex-grow: 1;
   padding: 1.6rem;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.2rem;
 `
 
-export default ({ messages = [], message, user, onSubmit, onChange }) => (
+export default ({
+  messages = [],
+  message,
+  user,
+  onSubmit,
+  onChange,
+}) => (
   <Chat>
-    <List>
-      { messages.map(msg =>
-        <Message key={msg.id} message={msg} user={user} />)
-      }
-    </List>
+    <Scroll>
+      <List>
+        { messages.map(msg =>
+          <Message key={msg.id} message={msg} user={user} />)
+        }
+      </List>
+    </Scroll>
     <ChatField
       onSubmit={onSubmit}
       onChange={onChange}

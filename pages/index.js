@@ -1,32 +1,42 @@
 import React from 'react'
 import axios from 'axios'
+import Cookie from 'js-cookie'
 import io from 'socket.io-client'
 import Base from '../components/Base'
 import Chat from '../components/Chat'
-import Signup from '../components/Signup'
+import { API } from '../constants'
 
-const getCachedUser = () => {
-  if (typeof window !== 'undefined') {
-    return JSON.parse(localStorage.getItem('user')) || null
+const getUserById = async (id) => {
+  if (!id) throw new Error('"Id" argument is not defined')
+  const { data: user } = await axios(`${API}/user?id=${id}`)
+  if (user.error) throw new Error(user.error)
+
+  return user
+}
+
+const getUserCookie = (req) => {
+  if (req) {
+    return req.cookies.userId
   }
 
-  return null
+  return Cookie.get('userId')
 }
 
 class Home extends React.Component {
-  static async getInitialProps() {
-    const { data: messages } = await axios('http://localhost:3000/messages')
-    const { data: users } = await axios('http://localhost:3000/users')
-    return { messages, users }
-  }
+  static async getInitialProps({ req, res }) {
+    const id = getUserCookie(req)
+    const user = await getUserById(id)
+      .catch(() => {
+        res.redirect('/login')
+      })
 
-  static defaultProps = {
-    messages: [],
+    const messagesPromise = axios(`${API}/messages`)
+    const [{ data: messages }] = await Promise.all([messagesPromise])
+
+    return { messages, user }
   }
 
   state = {
-    user: getCachedUser() || { id: 123 },
-    users: this.props.users,
     message: '',
     messages: this.props.messages,
   }
@@ -34,7 +44,6 @@ class Home extends React.Component {
   componentDidMount() {
     this.socket = io()
     this.socket.on('message', this.handleIncomingMessage)
-    this.socket.on('user', this.handleIncomingUser)
   }
 
   componentWillUnmount() {
@@ -43,7 +52,6 @@ class Home extends React.Component {
   }
 
   handleIncomingMessage = (message) => {
-    console.log(message)
     this.setState(state => ({
       messages: [
         ...state.messages,
@@ -59,40 +67,18 @@ class Home extends React.Component {
 
   handleMessageSubmit = (e) => {
     e.preventDefault()
-    const { message, user } = this.state
+    const { message } = this.state
     if (!message.trim().length) return
 
-    this.socket.emit('message', { user, message })
+    this.socket.emit('message', { message, user: this.props.user })
     this.setState({ message: '' })
-  }
-
-  handleIncomingUser = (user) => {
-    if (this.state.user.nick === user.nick) {
-      this.setState({ user })
-      localStorage.setItem('user', JSON.stringify(user))
-    }
-  }
-
-  handleSignupSubmit = (user) => {
-    this.socket.emit('user', user)
-    this.setState({ user })
   }
 
   render() {
     return (
       <Base>
-        {/* {this.state.user
-          ? <Chat
-            user={this.state.user}
-            messages={this.state.messages}
-            message={this.state.message}
-            onChange={this.handleMessageChange}
-            onSubmit={this.handleMessageSubmit}
-          />
-          : <Signup onSubmit={this.handleSignupSubmit} />
-        } */}
         <Chat
-          user={this.state.user}
+          user={this.props.user}
           messages={this.state.messages}
           message={this.state.message}
           onChange={this.handleMessageChange}
