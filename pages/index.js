@@ -4,7 +4,7 @@ import Cookie from 'js-cookie'
 import io from 'socket.io-client'
 import Base from '../components/Base'
 import Chat from '../components/Chat'
-import { API } from '../constants'
+import { API } from '../utils/constants'
 
 const getUserById = async (id) => {
   if (!id) throw new Error('"Id" argument is not defined')

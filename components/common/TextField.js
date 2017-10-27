@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../style'
+import { colors } from '../../utils/style'
 
 const TextField = styled.input`
   padding: 1rem 1.6rem;

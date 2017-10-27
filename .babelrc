@@ -3,6 +3,8 @@
     "next/babel"
   ],
   "plugins": [
+    "preval",
+    "polished",
     [
       "styled-components",
       {
@@ -10,7 +12,6 @@
         "displayName": true,
         "preprocess": false
       }
-    ],
-    "inline-react-svg"
+    ]
   ]
 }

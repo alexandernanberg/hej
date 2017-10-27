@@ -5,8 +5,8 @@ import Cookie from 'js-cookie'
 import styled from 'styled-components'
 import TextField from '../components/common/TextField'
 import Button from '../components/common/Button'
-import { colors } from '../style'
-import { API } from '../constants'
+// import { colors } from '../style'
+import { API } from '../utils/constants'
 
 const Form = styled.form`
   display: flex;

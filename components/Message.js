@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { formatDistance } from 'date-fns'
-import { colors } from '../style'
+import { colors } from '../utils/style'
 
 const Text = styled.p`
   font-size: 1.8rem;

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../style'
+import { colors } from '../../utils/style'
 
 export const BaseButton = styled.button`
   margin: 0;
