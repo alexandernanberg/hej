@@ -5,7 +5,6 @@ import Cookie from 'js-cookie'
 import styled from 'styled-components'
 import TextField from '../components/common/TextField'
 import Button from '../components/common/Button'
-// import { colors } from '../style'
 import { API } from '../utils/constants'
 
 const Form = styled.form`
@@ -35,14 +34,15 @@ class LoginForm extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault()
+    this.setState({ loading: true })
 
     const { nickname, email } = this.state
 
     axios.post(`${API}/user`, { nickname, email })
       .then(({ data }) => {
+        this.setState({ loading: false })
         Cookie.set('userId', data.id)
         Router.push('/')
-        console.log(data)
       })
   }
 
@@ -59,6 +59,7 @@ class LoginForm extends React.Component {
           placeholder="Your nickname"
           onChange={this.handleChange}
           value={this.state.nickname}
+          autoFocus
           required
         />
         <TextField
@@ -71,7 +72,7 @@ class LoginForm extends React.Component {
         />
         <Button disabled={this.state.loading}>Enter chat</Button>
         { this.state.loading &&
-          <p>Laddar...</p>
+          <p>Loading...</p>
         }
       </Form>
     )

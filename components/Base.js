@@ -1,10 +1,7 @@
-import React from 'react'
-// import styled from 'styled-components'
-import { InjectGlobalStyle } from '../utils/style'
+import injectGlobalStyle from '../styles/injectGlobalStyle'
 
-export default props => (
-  <div>
-    <InjectGlobalStyle />
-    {props.children}
-  </div>
-)
+export default (props) => {
+  injectGlobalStyle()
+
+  return [props.children]
+}

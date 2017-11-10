@@ -3,9 +3,14 @@ import styled from 'styled-components'
 import TextField from './common/TextField'
 import Icon from './common/Icon'
 import { BaseButton } from './common/Button'
-import { colors } from '../utils/style'
+import { colors } from '../styles'
 
 const ChatField = styled.form`
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
   flex-flow: row-wrap;
   align-items: center;

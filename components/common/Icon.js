@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import iconMap from '../../utils/getIconMap'
+import icons from '../../utils/getIcons'
 
 const Svg = styled.svg`
   display: inline-block;
@@ -11,7 +11,7 @@ const Svg = styled.svg`
 `
 
 export default ({ name, ...rest }) => (
-  <Svg viewBox={iconMap[name].viewBox} {...rest}>
-    <path d={iconMap[name].path} />
+  <Svg viewBox={icons[name].viewBox} {...rest}>
+    <path d={icons[name].path} />
   </Svg>
 )

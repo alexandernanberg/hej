@@ -6,16 +6,7 @@ import ChatField from '../components/ChatField'
 const Chat = styled.div`
   display: flex;
   flex-flow: column wrap;
-  height: 100vh;
   background-color: white;
-`
-
-const Scroll = styled.div`
-  flex-grow: 1;
-  overflow-y: scroll;
-  width: 100%;
-  height: 400px;
-  -webkit-overflow-scrolling: touch;
 `
 
 const List = styled.div`
@@ -24,7 +15,7 @@ const List = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   padding: 1.6rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 6.4rem;
 `
 
 export default ({
@@ -35,19 +26,16 @@ export default ({
   onChange,
 }) => (
   <Chat>
-    <Scroll>
-      <List>
-        { messages.map(msg =>
-          <Message key={msg.id} message={msg} user={user} />)
-        }
-      </List>
-    </Scroll>
+    <List>
+      { messages.map(msg =>
+        <Message key={msg.id} message={msg} user={user} />)
+      }
+    </List>
     <ChatField
       onSubmit={onSubmit}
       onChange={onChange}
       value={message}
       placeholder="Say something..."
-      autoFocus
     />
   </Chat>
 )

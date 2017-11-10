@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { formatDistance } from 'date-fns'
-import { colors } from '../utils/style'
+import { colors } from '../styles'
 
 const Text = styled.p`
   font-size: 1.8rem;
@@ -22,7 +22,7 @@ const Time = styled.time`
 const Message = styled.div`
   position: relative;
   display: inline-block;
-  padding: 0.6rem 1.2rem;
+  padding: 0.8rem 1.2rem;
   margin: 0 2.4rem 2.4rem;
   max-width: 75%;
   border-radius: 1.6rem 1.6rem 1.6rem 0;
