@@ -38,12 +38,11 @@ class LoginForm extends React.Component {
 
     const { nickname, email } = this.state
 
-    axios.post(`${API}/user`, { nickname, email })
-      .then(({ data }) => {
-        this.setState({ loading: false })
-        Cookie.set('userId', data.id)
-        Router.push('/')
-      })
+    axios.post(`${API}/user`, { nickname, email }).then(({ data }) => {
+      this.setState({ loading: false })
+      Cookie.set('userId', data.id)
+      Router.push('/')
+    })
   }
 
   handleChange = ({ target }) => {
@@ -53,7 +52,11 @@ class LoginForm extends React.Component {
   render() {
     return (
       <Form onSubmit={this.onSubmit}>
-        <Logo><span role="img" aria-label="Logo">👋</span></Logo>
+        <Logo>
+          <span role="img" aria-label="Logo">
+            👋
+          </span>
+        </Logo>
         <TextField
           name="nickname"
           placeholder="Your nickname"
@@ -71,9 +74,7 @@ class LoginForm extends React.Component {
           required
         />
         <Button disabled={this.state.loading}>Enter chat</Button>
-        { this.state.loading &&
-          <p>Loading...</p>
-        }
+        {this.state.loading && <p>Loading...</p>}
       </Form>
     )
   }

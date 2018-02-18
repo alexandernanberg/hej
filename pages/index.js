@@ -25,10 +25,9 @@ const getUserCookie = (req) => {
 class Home extends React.Component {
   static async getInitialProps({ req, res }) {
     const id = getUserCookie(req)
-    const user = await getUserById(id)
-      .catch(() => {
-        res.redirect('/login')
-      })
+    const user = await getUserById(id).catch(() => {
+      res.redirect('/login')
+    })
 
     const messagesPromise = axios(`${API}/messages`)
     const [{ data: messages }] = await Promise.all([messagesPromise])
@@ -53,10 +52,7 @@ class Home extends React.Component {
 
   handleIncomingMessage = (message) => {
     this.setState(state => ({
-      messages: [
-        ...state.messages,
-        message,
-      ],
+      messages: [...state.messages, message],
     }))
   }
 

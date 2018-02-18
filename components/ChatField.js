@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import TextField from './common/TextField'
 import Icon from './common/Icon'
 import { BaseButton } from './common/Button'
-import { colors } from '../styles'
 
 const ChatField = styled.form`
   position: fixed;
@@ -16,8 +15,8 @@ const ChatField = styled.form`
   align-items: center;
   margin-top: auto;
   padding: 1.2rem 0.8rem;
-  background-color: ${colors.gray100};
-  border-top: solid 1px ${colors.gray300};
+  background-color: var(--gray100);
+  border-top: solid 1px var(--gray300);
 `
 
 const Input = TextField.extend`
@@ -30,7 +29,7 @@ const Button = BaseButton.extend`
   margin: auto 0 auto 0.8rem;
   width: 4rem;
   height: 4rem;
-  font-size:   2.4rem;
+  font-size: 2.4rem;
 `
 
 export default ({ onSubmit, ...props }) => (

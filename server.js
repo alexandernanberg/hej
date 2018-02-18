@@ -21,7 +21,8 @@ const messages = [
       id: v4(),
       nick: 'bot',
       email: 'anna@bot.se',
-      avatar: 'https://venturebeat.com/wp-content/uploads/2017/01/pepper.ai-bot.png?resize=300%2C300&strip=all',
+      avatar:
+        'https://venturebeat.com/wp-content/uploads/2017/01/pepper.ai-bot.png?resize=300%2C300&strip=all',
     },
   },
 ]

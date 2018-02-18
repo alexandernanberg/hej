@@ -5,9 +5,11 @@
     "browser": true
   },
   "plugins": [
-    "react"
+    "react",
+    "prettier"
   ],
   "rules": {
+    "max-len": "off",
     "semi": ["error", "never"],
     "react/jsx-closing-bracket-location": 0,
     "react/jsx-filename-extension": 0,

@@ -19,17 +19,18 @@ const List = styled.div`
 `
 
 export default ({
-  messages = [],
-  message,
-  user,
-  onSubmit,
-  onChange,
+  messages = [], message, user, onSubmit, onChange,
 }) => (
   <Chat>
     <List>
-      { messages.map(msg =>
-        <Message key={msg.id} message={msg} user={user} />)
-      }
+      {messages.map((msg, index, arr) => (
+        <Message
+          key={msg.id}
+          prevMessage={arr[index - 1]}
+          message={msg}
+          user={user}
+        />
+      ))}
     </List>
     <ChatField
       onSubmit={onSubmit}

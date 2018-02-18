@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
 
 export const BaseButton = styled.button`
   margin: 0;
@@ -11,9 +10,9 @@ export const BaseButton = styled.button`
   background: transparent;
   cursor: pointer;
   fill: currentColor;
-  color: ${colors.blue500};
+  color: var(--blue500);
 `
 
 export default styled(BaseButton)`
-  color: ${colors.blue500}
+  color: var(--blue500);
 `
