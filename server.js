@@ -1,6 +1,6 @@
-const app = require('express')()
-const server = require('http').Server(app)
-const io = require('socket.io')(server)
+const express = require('express')
+const http = require('http')
+const socketServer = require('socket.io')
 const next = require('next')
 const { v4 } = require('uuid')
 const md5 = require('md5')
@@ -8,6 +8,9 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
+const app = express()
+const server = http.Server(app)
+const io = socketServer(server)
 const dev = process.env.NODE_ENV !== 'production'
 const nextApp = next({ dev })
 const nextHandler = nextApp.getRequestHandler()
@@ -19,7 +22,7 @@ const messages = [
     time: new Date(),
     user: {
       id: v4(),
-      nick: 'bot',
+      nickname: 'bot',
       email: 'anna@bot.se',
       avatar:
         'https://venturebeat.com/wp-content/uploads/2017/01/pepper.ai-bot.png?resize=300%2C300&strip=all',
@@ -35,7 +38,7 @@ io.on('connection', (socket) => {
   console.log('client connected')
 
   socket.on('message', ({ message: content, user = {} }) => {
-    console.log(`message ${content} from ${user.nick}`)
+    console.log(`message ${content} from ${user.nickname}`)
 
     const message = {
       id: v4(),
@@ -49,11 +52,11 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('message', message)
   })
 
-  socket.on('user', ({ nick, email }) => {
-    console.log(`user ${nick} connected`)
+  socket.on('user', ({ nickname, email }) => {
+    console.log(`user ${nickname} connected`)
 
     const user = {
-      nick,
+      nickname,
       email,
       id: v4(),
       avatar: `https://gravatar.com/avatar/${md5(email)}`,

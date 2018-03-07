@@ -5,13 +5,12 @@ import Icon from './common/Icon'
 import { BaseButton } from './common/Button'
 
 const ChatField = styled.form`
-  position: fixed;
+  position: absolute;
   z-index: 1;
   right: 0;
   bottom: 0;
   left: 0;
   display: flex;
-  flex-flow: row-wrap;
   align-items: center;
   margin-top: auto;
   padding: 1.2rem 0.8rem;

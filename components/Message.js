@@ -12,9 +12,7 @@ const Time = styled.time`
 const Message = styled.div`
   max-width: 75%;
 
-  ${props =>
-    props.isCurrentUser &&
-    `
+  ${props => props.isCurrentUser && `
     align-self: flex-end;
 
     & img {
@@ -26,9 +24,9 @@ const Message = styled.div`
       border-radius: 3.2rem 3.2rem 0 3.2rem;
       color: white;
     }
-  `} ${props =>
-  props.sameAuthorAsPrev &&
-      `
+  `}
+
+  ${props => props.sameAuthorAsPrev && `
     & img {
       opacity: 0;
     }
@@ -37,7 +35,7 @@ const Message = styled.div`
       display: none;
     }
   `};
-`
+` // prettier-ignore
 
 const Row = styled.div`
   display: flex;

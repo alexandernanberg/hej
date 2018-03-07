@@ -1,17 +1,17 @@
 import { injectGlobal } from 'styled-components'
+import reset from 'styled-reset'
 
-const reset = preval`
-  const fs = require('fs')
-  module.exports = fs.readFileSync('node_modules/reset-css/reset.css', 'utf8')
-`
 export default () => injectGlobal`
   ${reset}
 
   :root {
+    --gray900: #1a1a1e;
+    --gray800: #1f1f22;
     --gray600: #303030;
     --gray500: #6f6f6f;
     --gray400: #9f9f9f;
     --gray300: #e9ebed;
+    --gray200: #f6f8fa;
     --gray100: #fafbfc;
     --blue500: #3498db;
 
@@ -27,6 +27,7 @@ export default () => injectGlobal`
   html {
     box-sizing: border-box;
     font-size: 10px;
+    background-color: var(--gray900);
   }
 
   body {

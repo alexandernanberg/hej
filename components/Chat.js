@@ -4,9 +4,10 @@ import Message from './Message'
 import ChatField from '../components/ChatField'
 
 const Chat = styled.div`
+  position: relative;
   display: flex;
   flex-flow: column wrap;
-  background-color: white;
+  background-color: var(--gray900);
 `
 
 const List = styled.div`
@@ -14,7 +15,7 @@ const List = styled.div`
   flex-flow: column wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 1.6rem;
+  padding: 1.6rem 2.4rem;
   margin-bottom: 6.4rem;
 `
 

@@ -1,38 +1,36 @@
 import React from 'react'
 import axios from 'axios'
 import Cookie from 'js-cookie'
+import styled from 'styled-components'
 import io from 'socket.io-client'
 import Base from '../components/Base'
+import Sidebar from '../components/Sidebar'
 import Chat from '../components/Chat'
 import { API } from '../utils/constants'
 
-const getUserById = async (id) => {
-  if (!id) throw new Error('"Id" argument is not defined')
-  const { data: user } = await axios(`${API}/user?id=${id}`)
-  if (user.error) throw new Error(user.error)
-
-  return user
-}
-
-const getUserCookie = (req) => {
-  if (req) {
-    return req.cookies.userId
-  }
-
-  return Cookie.get('userId')
-}
+const App = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr;
+`
 
 class Home extends React.Component {
   static async getInitialProps({ req, res }) {
-    const id = getUserCookie(req)
-    const user = await getUserById(id).catch(() => {
-      res.redirect('/login')
-    })
+    const id = req ? req.cookies.userId : Cookie.get('userId')
 
-    const messagesPromise = axios(`${API}/messages`)
-    const [{ data: messages }] = await Promise.all([messagesPromise])
+    try {
+      const messagesPromise = axios(`${API}/messages`)
+      const userPromise = axios(`${API}/user?id=${id}`)
+      const [{ data: messages }, { data: user }] = await Promise.all([
+        messagesPromise,
+        userPromise,
+      ])
 
-    return { messages, user }
+      if (user.error) throw new Error(user.error)
+
+      return { messages, user }
+    } catch (e) {
+      return res.redirect('/login')
+    }
   }
 
   state = {
@@ -73,13 +71,16 @@ class Home extends React.Component {
   render() {
     return (
       <Base>
-        <Chat
-          user={this.props.user}
-          messages={this.state.messages}
-          message={this.state.message}
-          onChange={this.handleMessageChange}
-          onSubmit={this.handleMessageSubmit}
-        />
+        <App>
+          <Sidebar />
+          <Chat
+            user={this.props.user}
+            messages={this.state.messages}
+            message={this.state.message}
+            onChange={this.handleMessageChange}
+            onSubmit={this.handleMessageSubmit}
+          />
+        </App>
       </Base>
     )
   }
