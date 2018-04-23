@@ -22,7 +22,7 @@ const Logo = styled.span`
   width: 100%;
   margin-bottom: 0.4em;
   text-align: center;
-  font-size: 5.2rem;
+  font-size: 6.4rem;
 `
 
 class LoginForm extends React.Component {

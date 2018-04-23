@@ -15,6 +15,7 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
+          {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
           <title>Hej 👋</title>
           <meta
             name="viewport"
