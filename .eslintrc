@@ -1,21 +1,21 @@
 {
-  "extends": "airbnb",
   "parser": "babel-eslint",
-  "env": {
-    "browser": true
-  },
+  "extends": "airbnb",
   "plugins": [
     "react",
     "prettier"
   ],
-  "rules": {
-    "max-len": 0,
-    "semi": ["error", "never"],
-    "react/jsx-closing-bracket-location": 0,
-    "react/jsx-filename-extension": 0,
-    "react/prop-types": 0
+  "env": {
+    "browser": true
   },
-  "globals": {
-    "preval": true
+  "rules": {
+    "max-len": "off",
+    "semi": [
+      "error",
+      "never"
+    ],
+    "react/jsx-filename-extension": 0,
+    "react/prop-types": 0,
+    "import/prefer-default-export": 0
   }
 }
