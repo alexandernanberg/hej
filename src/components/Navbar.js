@@ -7,15 +7,15 @@ import { buttonBase } from './common/Button'
 const Nav = styled.nav`
   display: flex;
   padding: 1.2rem;
-  background-color: #222;
+  background-color: #222222;
 `
 
 const BarButton = styled.button`
   ${buttonBase};
+  padding: 1.2rem;
   font-size: 1.8rem;
   color: white;
   background: transparent;
-  padding: 1.2rem;
 `
 
 const Navbar = withRouter(() => (

@@ -1,14 +1,15 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
+import { FillSpace } from './StyleHelpers'
 
 const spin = keyframes`
- from {
-   transform: none;
- }
+  from {
+    transform: none;
+  }
 
- to {
-   transform: rotate(360deg);
- }
+  to {
+    transform: rotate(360deg);
+  }
 `
 
 const Loader = styled.div`
@@ -20,19 +21,10 @@ const Loader = styled.div`
   animation: ${spin} 1s linear infinite;
 `
 
-const Fullscreen = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-`
-
 export const LoadingScreen = () => (
-  <Fullscreen>
+  <FillSpace>
     <Loader />
-  </Fullscreen>
+  </FillSpace>
 )
 
 export default Loader

@@ -1,9 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Page from '../components/Page'
-import { H1 } from '../components/common/Title'
+import { Button } from '../components/common/Button'
+import Icon from '../components/common/Icon'
+import { ErrorScreen } from '../components/Error'
 
-export default () => (
-  <Page title="404">
-    <H1>404.</H1>
-  </Page>
-)
+const LinkedButton = Button.withComponent(Link)
+
+export default function NotFound() {
+  return (
+    <Page title="404">
+      <ErrorScreen title="404 – Not found" emoji="👀">
+        <LinkedButton to="/">
+          Go to startpage <Icon glyph="arrow-right" />
+        </LinkedButton>
+      </ErrorScreen>
+    </Page>
+  )
+}

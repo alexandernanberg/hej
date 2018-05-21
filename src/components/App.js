@@ -1,11 +1,13 @@
 import React, { Fragment } from 'react'
+import { hot } from 'react-hot-loader'
 import Helmet from 'react-helmet'
 import Loadable from 'react-loadable'
-import { hot } from 'react-hot-loader'
+import ErrorBoundary from 'react-error-boundary'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import ProtectedRoute from './ProtectedRoute'
+import PrivateRoute from './PrivateRoute'
 import { LoadingScreen } from '../components/common/Loader'
 import { injectGlobalStyle } from '../style'
+import { ErrorScreen } from './Error'
 
 const Index = Loadable({
   loader: () =>
@@ -23,20 +25,22 @@ const NotFound = Loadable({
   loading: LoadingScreen,
 })
 
-const App = () => {
+function App() {
   injectGlobalStyle()
 
   return (
-    <Router>
-      <Fragment>
-        <Helmet titleTemplate="%s - Hej" defaultTitle="Hej" />
-        <Switch>
-          <ProtectedRoute exact path="/" isAuthenticated component={Index} />
-          <Route path="/login" component={Login} />
-          <Route component={NotFound} />
-        </Switch>
-      </Fragment>
-    </Router>
+    <ErrorBoundary FallbackComponent={ErrorScreen}>
+      <Router>
+        <Fragment>
+          <Helmet titleTemplate="%s - Hej" defaultTitle="Hej" />
+          <Switch>
+            <PrivateRoute exact path="/" component={Index} />
+            <Route path="/login" component={Login} />
+            <Route component={NotFound} />
+          </Switch>
+        </Fragment>
+      </Router>
+    </ErrorBoundary>
   )
 }
 
