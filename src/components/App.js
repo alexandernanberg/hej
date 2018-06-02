@@ -22,7 +22,7 @@ const Login = Loadable({
 
 const NotFound = Loadable({
   loader: () => import('../pages/NotFound' /* webpackChunkName: "404.route" */),
-  loading: LoadingScreen,
+  loading: () => null,
 })
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
         <Fragment>
           <Helmet titleTemplate="%s - Hej" defaultTitle="Hej" />
           <Switch>
-            <PrivateRoute exact path="/" component={Index} />
+            <PrivateRoute exact path="/" isAuthenticated component={Index} />
             <Route path="/login" component={Login} />
             <Route component={NotFound} />
           </Switch>
