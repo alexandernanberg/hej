@@ -13,12 +13,12 @@ export function ErrorScreen({
       <H1>
         {title} <span aria-hidden>{emoji}</span>
       </H1>
-      {children && <Spacer height={3} />}
+      {children && <Spacer h={3} />}
       {children}
     </FillSpace>
   )
 }
 
-export default function ErrorView() {
+export default function ErrorInline() {
   return null
 }

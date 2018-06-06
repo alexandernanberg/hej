@@ -6,6 +6,7 @@ import { Button } from '../components/common/Button'
 import TextField from '../components/common/TextField'
 import Spacer from '../components/common/Spacer'
 import Icon from '../components/common/Icon'
+import Loader from '../components/common/Loader'
 import { FillSpace } from '../components/common/StyleHelpers'
 
 const Form = styled.form`
@@ -16,31 +17,48 @@ const Form = styled.form`
   padding: 2.4rem;
 `
 
-export default function Login() {
-  return (
-    <Page title="Login">
-      <FillSpace>
-        <Form
-          onSubmit={(event) => {
-            event.preventDefault()
-            console.log('submit', event)
-          }}
-        >
-          <H1>
-            Hej{' '}
-            <span role="img" aria-label="wave emoji">
-              👋
-            </span>
-          </H1>
-          <Spacer height={3} />
-          <TextField label="Username" required />
-          <TextField type="email" label="Email" requried />
-          <Spacer height={3} />
-          <Button>
-            Login <Icon glyph="arrow-right" />
-          </Button>
-        </Form>
-      </FillSpace>
-    </Page>
-  )
+export default class Login extends React.Component {
+  state = {
+    isLoading: false,
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault()
+    console.log('submit', event)
+    this.setState({ isLoading: true })
+
+    setTimeout(() => {
+      this.setState({ isLoading: false })
+    }, 1000)
+  }
+
+  render() {
+    return (
+      <Page title="Login">
+        <FillSpace>
+          <Form onSubmit={this.onSubmit}>
+            <H1>
+              Hej{' '}
+              <span role="img" aria-label="wave">
+                👋
+              </span>
+            </H1>
+            <Spacer h={3} />
+            <TextField label="Username" name="name" required />
+            <TextField type="email" label="Email" name="email" required />
+            <Spacer h={3} />
+            <Button type="submit">
+              {this.state.isLoading ? (
+                <Loader gray />
+              ) : (
+                <span>
+                  Login <Icon glyph="arrow-right" />
+                </span>
+              )}
+            </Button>
+          </Form>
+        </FillSpace>
+      </Page>
+    )
+  }
 }

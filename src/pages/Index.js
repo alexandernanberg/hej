@@ -1,6 +1,7 @@
 import React from 'react'
 import Page from '../components/Page'
 import Navbar from '../components/Navbar'
+import Loader from '../components/common/Loader'
 import { H1 } from '../components/common/Title'
 
 export default class Index extends React.Component {
@@ -20,6 +21,7 @@ export default class Index extends React.Component {
         >
           Increment
         </button>
+        <Loader />
       </Page>
     )
   }

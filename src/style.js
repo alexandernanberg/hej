@@ -41,7 +41,9 @@ export const injectGlobalStyle = () => injectGlobal`
     --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     /* Durations */
-    --time-fast: 180ms;
+    --time-fast: 120ms;
+    --time-default: 200ms;
+    --time-slow: 360ms;
 
     /* Sizes */
     --size-1: 0.8rem;
