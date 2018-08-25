@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { Spinner } from './Loader'
+import { Spinner } from './Loader/style'
 
 export const buttonBase = css`
   appearance: none;

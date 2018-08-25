@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Wrapper, Label, Input } from './style'
-import generateId from '../../../helpers/generateId'
+import generateId from '../../lib/generateId'
 
 export default class TextField extends React.Component {
   static propTypes = {
@@ -41,14 +41,14 @@ export default class TextField extends React.Component {
     return rest
   }
 
-  onChange = ({ target }) => {
-    const { value } = target
+  onChange = (event) => {
+    const { value } = event.target
 
     if (!this.isControlled()) {
       this.setState({ value })
     }
 
-    this.props.onChange(value)
+    this.props.onChange(event)
   }
 
   onFocus = () => {
@@ -69,7 +69,7 @@ export default class TextField extends React.Component {
     const value = this.getValue()
 
     return (
-      <Wrapper isFocused={isFocused} isActive={isActive}>
+      <Wrapper isFocused={isFocused} isActive={isActive || !!value}>
         <Label htmlFor={this.id}>{label}</Label>
         <Input
           id={this.id}

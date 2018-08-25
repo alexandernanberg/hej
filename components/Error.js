@@ -1,7 +1,7 @@
 import React from 'react'
-import { H1 } from '../components/common/Title'
-import Spacer from '../components/common/Spacer'
-import { FillSpace } from '../components/common/StyleHelpers'
+import { H1 } from './Text'
+import Spacer from './Spacer'
+import { FillSpace } from './StyleHelpers'
 
 export function ErrorScreen({
   title = 'An unexpected error occured',

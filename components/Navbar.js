@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { withRouter } from 'react-router-dom'
-import Icon from './common/Icon'
-import { buttonBase } from './common/Button'
+import Icon from './Icon'
+import { buttonBase } from './Button'
 
 const Nav = styled.nav`
   display: flex;
@@ -18,12 +17,12 @@ const BarButton = styled.button`
   background: transparent;
 `
 
-const Navbar = withRouter(() => (
+const Navbar = () => (
   <Nav>
     <BarButton>
       <Icon glyph="arrow-left" />
     </BarButton>
   </Nav>
-))
+)
 
 export default Navbar

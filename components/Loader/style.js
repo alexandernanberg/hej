@@ -1,8 +1,6 @@
-import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { FillSpace } from './StyleHelpers'
 
-const spin = keyframes`
+export const spin = keyframes`
   0% {
     opacity: 0.85;
   }
@@ -96,32 +94,3 @@ export const Blade = styled.div`
     transform: rotate(360deg) translate(0, -150%);
   }
 `
-
-export default function Loader(props) {
-  return (
-    <Spinner {...props}>
-      <Blade />
-      <Blade />
-      <Blade />
-      <Blade />
-      <Blade />
-      <Blade />
-      <Blade />
-      <Blade />
-      <Blade />
-      <Blade />
-      <Blade />
-      <Blade />
-    </Spinner>
-  )
-}
-
-export function LoadingScreen(props) {
-  if (!props.pastDelay) return null
-
-  return (
-    <FillSpace>
-      <Loader />
-    </FillSpace>
-  )
-}

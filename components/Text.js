@@ -6,10 +6,10 @@ export const Title = styled.h1`
   color: white;
 `
 
-export const H1 = Title.extend`
+export const H1 = styled(Title)`
   font-size: 4rem;
 `
 
-export const H2 = Title.extend`
+export const H2 = styled(Title)`
   font-size: 2.4rem;
 `
