@@ -6,7 +6,7 @@ import Cookies from 'js-cookie'
 import { WebAuth } from 'auth0-js'
 import Layout from '../components/Layout'
 import { H1 } from '../components/Text'
-import { Button } from '../components/Button'
+import Button from '../components/Button'
 import TextField from '../components/TextField'
 import Spacer from '../components/Spacer'
 import Icon from '../components/Icon'
@@ -30,7 +30,7 @@ const Form = styled.form`
 `
 
 export default class Login extends React.Component {
-  onSubmit = ({ values, setStatus }) => {
+  onSubmit = ({ values, setSubmitting }) => {
     // fake auth
     setTimeout(() => {
       Cookies.set('auth', true)
@@ -57,7 +57,7 @@ export default class Login extends React.Component {
       <Layout title="Login">
         <FillSpace>
           <Formin onSubmit={this.onSubmit}>
-            {({ getFormProps, getInputProps, status }) => (
+            {({ getFormProps, getInputProps, isSubmitting }) => (
               <Form {...getFormProps()}>
                 <H1>
                   Hej{' '}
@@ -79,7 +79,7 @@ export default class Login extends React.Component {
                 />
                 <Spacer h={3} />
                 <Button type="submit">
-                  {status === Formin.stateStatusTypes.loading ? (
+                  {isSubmitting ? (
                     <Loader gray />
                   ) : (
                     <span>
