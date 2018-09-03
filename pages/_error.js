@@ -1,18 +1,21 @@
 import React from 'react'
+import Link from 'next/link'
 import Layout from '../components/Layout'
+import Icon from '../components/Icon'
+import { LinkedButton } from '../components/Button'
 import { ErrorScreen } from '../components/Error'
 
 function getErrorInfo(statusCode) {
   switch (statusCode) {
     case 404:
       return {
-        title: `${statusCode} – Not found`,
+        title: `${statusCode} Not found`,
         emoji: '👀',
       }
 
     case 500:
       return {
-        title: `${statusCode} – Internal server error`,
+        title: `${statusCode} Internal server error`,
         emoji: '😳',
       }
 
@@ -26,7 +29,7 @@ function getErrorInfo(statusCode) {
 
 export default class Error extends React.Component {
   static getInitialProps({ res, err }) {
-    const statusCode = res ? res.statusCode : err ? err.statusCode : null
+    const { statusCode } = res || err || {}
     return { statusCode }
   }
 
@@ -36,9 +39,11 @@ export default class Error extends React.Component {
     return (
       <Layout title={title}>
         <ErrorScreen title={title} emoji={emoji}>
-          {/* <LinkedButton to="/">
-          Go to startpage <Icon glyph="arrow-right" />
-        </LinkedButton> */}
+          <Link href="/">
+            <LinkedButton>
+              Go to startpage <Icon glyph="arrow-right" />
+            </LinkedButton>
+          </Link>
         </ErrorScreen>
       </Layout>
     )
