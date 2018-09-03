@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Wrapper, Label, Input } from './style'
-import generateId from '../../lib/generateId'
+import { generateId, noop } from '../../lib/utils'
 
 export default class TextField extends React.Component {
   static propTypes = {
@@ -10,13 +10,19 @@ export default class TextField extends React.Component {
     defaultValue: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    onInvalid: PropTypes.func,
   }
 
   static defaultProps = {
     id: null,
     defaultValue: null,
     value: null,
-    onChange: () => {},
+    onChange: noop,
+    onFocus: noop,
+    onBlur: noop,
+    onInvalid: noop,
   }
 
   id = this.props.id || generateId('textfield')
@@ -35,12 +41,6 @@ export default class TextField extends React.Component {
     return this.isControlled() ? this.props.value : this.state.value
   }
 
-  filterInputProps = (props) => {
-    const { id, value, defaultValue, onChange, ...rest } = props
-
-    return rest
-  }
-
   onChange = (event) => {
     const { value } = event.target
 
@@ -51,25 +51,40 @@ export default class TextField extends React.Component {
     this.props.onChange(event)
   }
 
-  onFocus = () => {
+  onFocus = (event) => {
     this.setState({ isFocused: true })
+    this.props.onFocus(event)
   }
 
-  onBlur = () => {
+  onBlur = (event) => {
     this.setState({ isFocused: false, isActive: !!this.getValue() })
+    this.props.onBlur(event)
   }
 
-  onInvalid = () => {
-    console.log('invalid')
+  onInvalid = (event) => {
+    this.props.onInvalid(event)
   }
 
   render() {
-    const { label, ...props } = this.props
+    const {
+      label,
+      id: $id,
+      value: $value,
+      defaultValue: $defaultValue,
+      onChange: $onChange,
+      onFocus: $onFocus,
+      onBlur: $onBlur,
+      onInvalid: $onInvalid,
+      ...props
+    } = this.props
     const { isFocused, isActive } = this.state
     const value = this.getValue()
 
     return (
-      <Wrapper isFocused={isFocused} isActive={isActive || !!value}>
+      <Wrapper
+        isFocused={isFocused}
+        isActive={isFocused || isActive || !!value}
+      >
         <Label htmlFor={this.id}>{label}</Label>
         <Input
           id={this.id}
@@ -78,7 +93,7 @@ export default class TextField extends React.Component {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
           onInvalid={this.onInvalid}
-          {...this.filterInputProps(props)}
+          {...props}
         />
       </Wrapper>
     )
