@@ -1,3 +1,5 @@
+import React from 'react'
+import Link from 'next/link'
 import styled, { css } from 'styled-components'
 import { Spinner } from './Loader/style'
 
@@ -37,6 +39,20 @@ export const buttonBase = css`
   }
 `
 
-export const Button = styled.button`
+const Button = styled.button`
   ${buttonBase};
 `
+
+export default Button
+
+const ButtonLink = styled(Button.withComponent('a'))`
+  cursor: pointer;
+`
+
+export function LinkedButton({ children, href, ...props }) {
+  return (
+    <Link href={href}>
+      <ButtonLink {...props}>{children}</ButtonLink>
+    </Link>
+  )
+}
