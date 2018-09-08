@@ -3,7 +3,7 @@ import Router from 'next/router'
 import styled from 'styled-components'
 import Formin from 'formin'
 import Cookies from 'js-cookie'
-import { WebAuth } from 'auth0-js'
+// import { WebAuth } from 'auth0-js'
 import Layout from '../components/Layout'
 import { H1 } from '../components/Text'
 import Button from '../components/Button'
@@ -13,13 +13,13 @@ import Icon from '../components/Icon'
 import Loader from '../components/Loader'
 import FillSpace from '../components/FillSpace'
 
-const webAuth = new WebAuth({
-  domain: 'nanberg.eu.auth0.com',
-  clientID: 'QU1uKytWUKpyiG9lv0mSvZ2P6q2o4IKZ',
-  redirectUri: 'http://localhost:3000/login',
-  responseType: 'token',
-  scope: 'openid profile',
-})
+// const webAuth = new WebAuth({
+//   domain: 'nanberg.eu.auth0.com',
+//   clientID: 'QU1uKytWUKpyiG9lv0mSvZ2P6q2o4IKZ',
+//   redirectUri: 'http://localhost:3000/login',
+//   responseType: 'token',
+//   scope: 'openid profile',
+// })
 
 const Form = styled.form`
   display: flex;
@@ -30,7 +30,7 @@ const Form = styled.form`
 `
 
 export default class Login extends React.Component {
-  onSubmit = ({ values, setSubmitting }) => {
+  onSubmit = () => {
     // fake auth
     setTimeout(() => {
       Cookies.set('auth', true)
@@ -82,9 +82,9 @@ export default class Login extends React.Component {
                   {isSubmitting ? (
                     <Loader gray />
                   ) : (
-                    <span>
+                    <>
                       Login <Icon glyph="arrow-right" />
-                    </span>
+                    </>
                   )}
                 </Button>
               </Form>
