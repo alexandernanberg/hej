@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { findIconDefinition } from '@fortawesome/fontawesome-svg-core'
 
-const Svg = styled.svg`
+export const Svg = styled.svg`
   display: inline-block;
   vertical-align: -0.125em;
   height: 1em;
