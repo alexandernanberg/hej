@@ -1,6 +1,7 @@
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
+import { resetCounter } from '../lib/utils'
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -9,6 +10,9 @@ export default class MyDocument extends Document {
       sheet.collectStyles(<App {...props} />),
     )
     const styleTags = sheet.getStyleElement()
+
+    resetCounter()
+
     return { ...page, styleTags }
   }
 
