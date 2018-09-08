@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Spinner } from './Loader/style'
 
-export const buttonBase = css`
+const Button = styled.button`
   appearance: none;
   margin: 0;
   border: none;
@@ -18,7 +18,7 @@ export const buttonBase = css`
   color: black;
   background: transparent;
   background-color: white;
-  transition: all var(--time-fast) var(--ease-out-quad);
+  transition: all var(--duration-fast) var(--ease-out-quad);
 
   &:hover,
   &:focus {
@@ -37,10 +37,6 @@ export const buttonBase = css`
   & svg {
     margin: 0 0.4rem;
   }
-`
-
-const Button = styled.button`
-  ${buttonBase};
 `
 
 export default Button

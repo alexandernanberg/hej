@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../components/Layout'
-import { FillSpace } from '../components/StyleHelpers'
+import FillSpace from '../components/FillSpace'
 import Loader from '../components/Loader'
 import { H1 } from '../components/Text'
 import { redirect, parseCookies } from '../lib/utils'

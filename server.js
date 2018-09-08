@@ -2,7 +2,7 @@ const express = require('express')
 const http = require('http')
 const socketServer = require('socket.io')
 const next = require('next')
-const { v4 } = require('uuid')
+const nanoid = require('nanoid')
 const md5 = require('md5')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
@@ -15,24 +15,8 @@ const dev = process.env.NODE_ENV !== 'production'
 const nextApp = next({ dev })
 const nextHandler = nextApp.getRequestHandler()
 
-const messages = [
-  {
-    id: v4(),
-    content: 'Hej 👋',
-    time: new Date(),
-    user: {
-      id: v4(),
-      nickname: 'bot',
-      email: 'anna@bot.se',
-      avatar:
-        'https://venturebeat.com/wp-content/uploads/2017/01/pepper.ai-bot.png?resize=300%2C300&strip=all',
-    },
-  },
-]
-
-const users = [
-  // { id: v4(), email: '' },
-]
+const messages = []
+const users = []
 
 io.on('connection', (socket) => {
   console.log('client connected')
@@ -41,8 +25,8 @@ io.on('connection', (socket) => {
     console.log(`message ${content} from ${user.nickname}`)
 
     const message = {
-      id: v4(),
-      time: new Date(),
+      id: nanoid(),
+      time: Date.now(),
       user,
       content,
     }
@@ -58,7 +42,7 @@ io.on('connection', (socket) => {
     const user = {
       nickname,
       email,
-      id: v4(),
+      id: nanoid(),
       avatar: `https://gravatar.com/avatar/${md5(email)}`,
     }
 
@@ -100,7 +84,7 @@ nextApp.prepare().then(() => {
     const user = {
       nickname,
       email,
-      id: v4(),
+      id: nanoid(),
       avatar: `https://gravatar.com/avatar/${md5(email)}`,
     }
 

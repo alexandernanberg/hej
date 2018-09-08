@@ -11,7 +11,7 @@ import TextField from '../components/TextField'
 import Spacer from '../components/Spacer'
 import Icon from '../components/Icon'
 import Loader from '../components/Loader'
-import { FillSpace } from '../components/StyleHelpers'
+import FillSpace from '../components/FillSpace'
 
 const webAuth = new WebAuth({
   domain: 'nanberg.eu.auth0.com',

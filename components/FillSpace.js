@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const FillSpace = styled.div`
+const FillSpace = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,3 +8,5 @@ export const FillSpace = styled.div`
   height: 100vh;
   width: 100%;
 `
+
+export default FillSpace

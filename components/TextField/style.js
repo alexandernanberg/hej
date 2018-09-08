@@ -9,14 +9,14 @@ export const Label = styled.label`
   text-align: left;
   transform-origin: top left;
   color: var(--gray500);
-  transform: translateY(var(--size-4));
+  transform: translateY(var(--space-5));
   cursor: text;
-  transition: transform var(--time-fast) var(--ease-out-quad);
+  transition: transform var(--duration-fast) var(--ease-out-quad);
 `
 
 export const Input = styled.input`
-  margin-top: var(--size-2);
-  padding: var(--size-2) 0;
+  margin-top: var(--space-3);
+  padding: var(--space-3) 0;
   border: none;
   appearance: none;
   font: inherit;
@@ -42,7 +42,7 @@ export const Wrapper = styled.div`
   position: relative;
   display: inline-flex;
   flex-direction: column;
-  margin-bottom: var(--size-3);
+  margin-bottom: var(--space-4);
   font-family: var(--font-family);
   font-size: 1.6rem;
   line-height: 1.2em;
@@ -59,7 +59,7 @@ export const Wrapper = styled.div`
     pointer-events: none;
     background-color: white;
     transform-origin: 100% 100%;
-    transition: all var(--time-fast) var(--ease-out-quad);
+    transition: all var(--duration-fast) var(--ease-out-quad);
   }
 
   &:hover {

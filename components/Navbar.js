@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Icon from './Icon'
-import { buttonBase } from './Button'
+import Button from './Button'
 
 const Nav = styled.nav`
   display: flex;
@@ -9,8 +9,7 @@ const Nav = styled.nav`
   background-color: #222222;
 `
 
-const BarButton = styled.button`
-  ${buttonBase};
+const BarButton = styled(Button)`
   padding: 1.2rem;
   font-size: 1.8rem;
   color: white;

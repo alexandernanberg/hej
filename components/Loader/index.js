@@ -1,5 +1,5 @@
 import React from 'react'
-import { FillSpace } from '../StyleHelpers'
+import FillSpace from '../FillSpace'
 import { Spinner, Blade } from './style'
 
 export default function Loader(props) {

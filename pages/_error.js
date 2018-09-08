@@ -5,7 +5,7 @@ import Icon from '../components/Icon'
 import { LinkedButton } from '../components/Button'
 import { ErrorScreen } from '../components/Error'
 
-function getErrorInfo(statusCode) {
+function getErrorObject(statusCode) {
   switch (statusCode) {
     case 404:
       return {
@@ -27,7 +27,7 @@ function getErrorInfo(statusCode) {
   }
 }
 
-export default class Error extends React.Component {
+export default class ErrorPage extends React.Component {
   static getInitialProps({ res, err }) {
     const { statusCode } = res || err || {}
     return { statusCode }
@@ -35,7 +35,8 @@ export default class Error extends React.Component {
 
   render() {
     const { statusCode } = this.props
-    const { title, emoji } = getErrorInfo(statusCode)
+    const { title, emoji } = getErrorObject(statusCode)
+
     return (
       <Layout title={title}>
         <ErrorScreen title={title} emoji={emoji}>
