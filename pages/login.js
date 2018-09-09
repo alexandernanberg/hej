@@ -10,7 +10,6 @@ import Button from '../components/Button'
 import TextField from '../components/TextField'
 import Spacer from '../components/Spacer'
 import Icon from '../components/Icon'
-import Loader from '../components/Loader'
 import FillSpace from '../components/FillSpace'
 
 // const webAuth = new WebAuth({
@@ -78,14 +77,9 @@ export default class Login extends React.Component {
                   required
                 />
                 <Spacer h={3} />
-                <Button type="submit">
-                  {isSubmitting ? (
-                    <Loader gray />
-                  ) : (
-                    <>
-                      Login <Icon glyph="arrow-right" />
-                    </>
-                  )}
+                <Button type="submit" loading={isSubmitting}>
+                  <span>Login</span>
+                  <Icon glyph="arrow-right" />
                 </Button>
               </Form>
             )}

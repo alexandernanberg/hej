@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Layout from '../components/Layout'
 import Icon from '../components/Icon'
 import { LinkedButton } from '../components/Button'
-import { ErrorScreen } from '../components/Error'
+import { ErrorView } from '../components/Error'
 
 function getErrorObject(statusCode) {
   switch (statusCode) {
@@ -39,13 +39,13 @@ export default class ErrorPage extends React.Component {
 
     return (
       <Layout title={title}>
-        <ErrorScreen title={title} emoji={emoji}>
+        <ErrorView title={title} emoji={emoji}>
           <Link href="/">
             <LinkedButton>
               Go to startpage <Icon glyph="arrow-right" />
             </LinkedButton>
           </Link>
-        </ErrorScreen>
+        </ErrorView>
       </Layout>
     )
   }

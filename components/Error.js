@@ -3,7 +3,7 @@ import { H1 } from './Text'
 import Spacer from './Spacer'
 import FillSpace from './FillSpace'
 
-export function ErrorScreen({
+export function ErrorView({
   title = 'An unexpected error occured',
   emoji = '😳',
   children,
@@ -19,6 +19,6 @@ export function ErrorScreen({
   )
 }
 
-export default function ErrorInline() {
+export function ErrorInline() {
   return null
 }
