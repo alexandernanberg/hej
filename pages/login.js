@@ -1,6 +1,5 @@
 import React from 'react'
 import Router from 'next/router'
-import styled from 'styled-components'
 import Formin from 'formin'
 import Cookies from 'js-cookie'
 // import { WebAuth } from 'auth0-js'
@@ -10,6 +9,7 @@ import Button from '../components/Button'
 import TextField from '../components/TextField'
 import Spacer from '../components/Spacer'
 import Icon from '../components/Icon'
+import Form from '../components/Form'
 import FillSpace from '../components/FillSpace'
 
 // const webAuth = new WebAuth({
@@ -20,14 +20,6 @@ import FillSpace from '../components/FillSpace'
 //   scope: 'openid profile',
 // })
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 320px;
-  padding: 2.4rem;
-`
-
 export default class Login extends React.Component {
   onSubmit = () => {
     // fake auth
@@ -35,7 +27,6 @@ export default class Login extends React.Component {
       Cookies.set('auth', true)
       Router.replace('/')
     }, 1000)
-    // this.setState({ isLoading: true })
 
     // webAuth.passwordlessStart(
     //   {
