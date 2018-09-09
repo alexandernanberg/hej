@@ -2,12 +2,16 @@ import React from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { Spinner } from './Loader/style'
+import Loader from './Loader'
+import { Svg } from './Icon'
 
-const Button = styled.button`
+const StyledButton = styled.button`
+  display: inline-flex;
+  justify-content: center;
   appearance: none;
   margin: 0;
   border: none;
-  padding: 1.6rem 2.4rem;
+  padding: var(--space-4) var(--space-5);
   border-radius: 2px;
   font-family: var(--font-family);
   font-size: 1.2rem;
@@ -30,18 +34,29 @@ const Button = styled.button`
     padding: 0;
   }
 
-  & ${/* sc-selector */ Spinner} {
-    margin: -0.8rem 0;
+  & span + svg,
+  & svg + span {
+    margin-left: var(--space-1);
   }
 
-  & svg {
-    margin: 0 0.4rem;
+  & ${/* sc-selector */ Spinner} {
+    margin: -0.6rem 0;
+  }
+
+  & ${/* sc-selector */ Svg} {
+    flex-shrink: 0;
   }
 `
 
-export default Button
+export default function Button({ children, disabled, loading, ...props }) {
+  return (
+    <StyledButton disabled={disabled || loading} {...props}>
+      {loading ? <Loader gray /> : children}
+    </StyledButton>
+  )
+}
 
-const ButtonLink = styled(Button.withComponent('a'))`
+export const ButtonLink = styled(StyledButton.withComponent('a'))`
   cursor: pointer;
 `
 
