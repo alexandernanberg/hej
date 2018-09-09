@@ -5,12 +5,12 @@ import Button from './Button'
 
 const Nav = styled.nav`
   display: flex;
-  padding: 1.2rem;
+  padding: var(--space-3);
   background-color: #222222;
 `
 
 const BarButton = styled(Button)`
-  padding: 1.2rem;
+  padding: var(--space-3);
   font-size: 1.8rem;
   color: white;
   background: transparent;

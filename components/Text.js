@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Title = styled.h1`
-  margin-bottom: 0.4em;
+  margin-bottom: var(--space-1);
   font-weight: bold;
   color: white;
 `
