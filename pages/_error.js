@@ -40,8 +40,8 @@ export default class ErrorPage extends React.Component {
     return (
       <Layout title={title}>
         <ErrorView title={title} emoji={emoji}>
-          <Link href="/">
-            <LinkedButton>
+          <Link>
+            <LinkedButton href="/">
               <span>Go to startpage</span>
               <Icon glyph="arrow-right" />
             </LinkedButton>
