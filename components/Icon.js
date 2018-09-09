@@ -39,6 +39,9 @@ export default function Icon({ glyph, ...rest }) {
 Icon.propTypes = {
   glyph: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.shape({ prefix: PropTypes.string, iconName: PropTypes.string }),
+    PropTypes.shape({
+      prefix: PropTypes.string,
+      iconName: PropTypes.string,
+    }),
   ]).isRequired,
 }
