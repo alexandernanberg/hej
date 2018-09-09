@@ -13,7 +13,7 @@ export function ErrorView({
       <H1>
         {title} <span aria-hidden>{emoji}</span>
       </H1>
-      {children && <Spacer h={3} />}
+      {children && <Spacer h={4} />}
       {children}
     </FillSpace>
   )
