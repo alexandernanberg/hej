@@ -1,8 +1,7 @@
 import React from 'react'
 import Router from 'next/router'
 import Formin from 'formin'
-import Cookies from 'js-cookie'
-// import { WebAuth } from 'auth0-js'
+import * as auth from '../lib/auth'
 import Layout from '../components/Layout'
 import { H1 } from '../components/Text'
 import Button from '../components/Button'
@@ -12,34 +11,20 @@ import Icon from '../components/Icon'
 import Form from '../components/Form'
 import FillSpace from '../components/FillSpace'
 
-// const webAuth = new WebAuth({
-//   domain: 'nanberg.eu.auth0.com',
-//   clientID: 'QU1uKytWUKpyiG9lv0mSvZ2P6q2o4IKZ',
-//   redirectUri: 'http://localhost:3000/login',
-//   responseType: 'token',
-//   scope: 'openid profile',
-// })
-
 export default class Login extends React.Component {
-  onSubmit = () => {
-    // fake auth
-    setTimeout(() => {
-      Cookies.set('auth', true)
-      Router.replace('/')
-    }, 1000)
-
-    // webAuth.passwordlessStart(
-    //   {
-    //     connection: 'email',
-    //     send: 'link',
-    //     email: values.email,
-    //   },
-    //   (err, res) => {
-    //     console.log(err)
-    //     console.log(res)
-    //     // handle errors or continue
-    //   },
-    // )
+  onSubmit = ({ values: { username, email }, setSubmitting }) => {
+    auth
+      .login({
+        username,
+        email,
+      })
+      .then(() => {
+        Router.replace('/')
+      })
+      .catch((e) => {
+        console.error(e)
+        setSubmitting(false)
+      })
   }
 
   render() {
