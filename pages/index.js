@@ -2,16 +2,17 @@ import React from 'react'
 import Layout from '../components/Layout'
 import FillSpace from '../components/FillSpace'
 import Button from '../components/Button'
+import NoSSR from '../components/NoSSR'
 import Loader from '../components/Loader'
+import Icon from '../components/Icon'
 import Spacer from '../components/Spacer'
-import { H1 } from '../components/Text'
-import { redirect, parseCookies } from '../lib/utils'
-import * as auth from '../lib/auth'
+import Text, { H1 } from '../components/Text'
+import auth from '../lib/auth'
+import { redirect } from '../lib/utils'
 
 export default class Index extends React.Component {
   static getInitialProps(context) {
-    const cookies = parseCookies(context)
-    if (!cookies.auth) {
+    if (!auth.isAuthenticated(context)) {
       redirect(context, '/login')
     }
 
@@ -22,15 +23,19 @@ export default class Index extends React.Component {
     return (
       <Layout>
         <FillSpace>
-          <H1>Home</H1>
-          <Loader />
+          <H1>Messages</H1>
           <Spacer h={3} />
+          <NoSSR onSSR={<Loader />}>
+            <Text>List all the conversations...</Text>
+          </NoSSR>
+          <Spacer h={6} />
           <Button
             onClick={() => {
               auth.logout()
             }}
           >
-            Logout
+            <span>Sign out</span>
+            <Icon glyph="sign-out-alt" />
           </Button>
         </FillSpace>
       </Layout>
