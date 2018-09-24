@@ -67,44 +67,44 @@ export default class Login extends React.Component {
         <FillSpace>
           <Formin onSubmit={this.onSubmit}>
             {({ getFormProps, getInputProps, values, isSubmitting }) => {
-              if (isAwaiting) {
+              if (!isAwaiting) {
                 return (
-                  <>
-                    <H1>Awaiting confirmation</H1>
+                  <Form {...getFormProps()} autoComplete="nope">
+                    <H1>
+                      Hej{' '}
+                      <span role="img" aria-label="wave">
+                        👋
+                      </span>
+                    </H1>
+                    <Spacer h={5} />
+                    <TextField
+                      type="email"
+                      label="Email"
+                      {...getInputProps({ name: 'email' })}
+                      required
+                    />
                     <Spacer h={3} />
-                    <Text>
-                      We sent an email to <b>{values.email}</b>. Please login
-                      with the provided link.
-                    </Text>
-                    <Spacer h={3} />
-                    <Text>Waiting for your confirmation...</Text>
-                    <Spacer h={1} />
-                    <Loader />
-                  </>
+                    <Button type="submit" loading={isSubmitting}>
+                      <span>Login</span>
+                      <Icon glyph="sign-in-alt" />
+                    </Button>
+                  </Form>
                 )
               }
 
               return (
-                <Form {...getFormProps()}>
-                  <H1>
-                    Hej{' '}
-                    <span role="img" aria-label="wave">
-                      👋
-                    </span>
-                  </H1>
+                <>
+                  <H1>Awaiting confirmation</H1>
                   <Spacer h={3} />
-                  <TextField
-                    type="email"
-                    label="Email"
-                    {...getInputProps({ name: 'email' })}
-                    required
-                  />
+                  <Text>
+                    We sent an email to <b>{values.email}</b>. Please login with
+                    the provided link.
+                  </Text>
                   <Spacer h={3} />
-                  <Button type="submit" loading={isSubmitting}>
-                    <span>Login</span>
-                    <Icon glyph="sign-in-alt" />
-                  </Button>
-                </Form>
+                  <Text>Waiting for your confirmation...</Text>
+                  <Spacer h={1} />
+                  <Loader />
+                </>
               )
             }}
           </Formin>
