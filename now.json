@@ -2,9 +2,6 @@
   "name": "hej",
   "alias": "hej",
   "scale": {
-    "bru1": {
-      "min": 1,
-      "max": 2
-    }
+    "bru1": { "min": 1, "max": 2 }
   }
 }
