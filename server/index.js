@@ -1,18 +1,17 @@
-const express = require('express')
-const http = require('http')
-const socketServer = require('socket.io')
+require('now-env')
+const app = require('express')()
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
 const next = require('next')
 const nanoid = require('nanoid')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
-const app = express()
-const server = http.Server(app)
-const io = socketServer(server)
+const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const nextApp = next({ dev })
-const nextHandler = nextApp.getRequestHandler()
+const handle = nextApp.getRequestHandler()
 
 const messages = []
 
@@ -47,10 +46,10 @@ nextApp.prepare().then(() => {
     res.json(messages)
   })
 
-  app.get('*', (req, res) => nextHandler(req, res))
+  app.get('*', (req, res) => handle(req, res))
 
-  server.listen(3000, (err) => {
+  server.listen(port, (err) => {
     if (err) throw err
-    console.log('> Ready on http://localhost:3000')
+    console.log(`> Ready on http://localhost:${port}`)
   })
 })
