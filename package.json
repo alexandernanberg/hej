@@ -8,7 +8,9 @@
     "url": "https://github.com/alexandernanberg/hej"
   },
   "browserslist": [
-    "> 5%",
+    "> 5% in SE",
+    "latest 2 Firefox versions",
+    "latest 2 iOS versions",
     "not dead"
   ],
   "scripts": {
