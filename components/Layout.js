@@ -1,14 +1,12 @@
 import React from 'react'
-import Head from 'next/head'
+import Meta from './Meta'
 import { GlobalStyle } from '../lib/style'
 
 export default function Layout({ children, title }) {
   return (
     <>
+      <Meta title={title} />
       <GlobalStyle />
-      <Head>
-        <title>{title ? `${title} – Hej` : 'Hej'}</title>
-      </Head>
       {children}
     </>
   )

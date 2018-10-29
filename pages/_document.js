@@ -19,18 +19,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <html lang="en">
-        <Head>
-          <meta charSet="utf-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <meta name="mobile-web-app-capable" content="yes" />
-          <link rel="manifest" href="/static/manifest.json" />
-          <link rel="icon" href="/static/icon.png" />
-          <link rel="apple-touch-icon" href="/static/icon.png" />
-          {this.props.styleTags}
-        </Head>
+        <Head>{this.props.styleTags}</Head>
         <body>
           <Main />
           <NextScript />
