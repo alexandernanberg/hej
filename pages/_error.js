@@ -1,9 +1,24 @@
 import React from 'react'
-import Link from 'next/link'
 import Layout from '../components/Layout'
 import Icon from '../components/Icon'
 import { LinkedButton } from '../components/Button'
-import { ErrorView } from '../components/Error'
+import { Heading } from '../components/Typography'
+import Box from '../components/Box'
+
+export function ErrorView({
+  title = 'An unexpected error occured',
+  emoji = '😳',
+  children,
+}) {
+  return (
+    <Box cover>
+      <Heading variant="h1">
+        {title} <span aria-hidden>{emoji}</span>
+      </Heading>
+      {children && <Box mt={4}>{children}</Box>}
+    </Box>
+  )
+}
 
 function getErrorObject(statusCode) {
   switch (statusCode) {
@@ -40,12 +55,10 @@ export default class ErrorPage extends React.Component {
     return (
       <Layout title={title}>
         <ErrorView title={title} emoji={emoji}>
-          <Link>
-            <LinkedButton href="/">
-              <span>Go to startpage</span>
-              <Icon glyph="arrow-right" />
-            </LinkedButton>
-          </Link>
+          <LinkedButton href="/">
+            <span>Go to startpage</span>
+            <Icon glyph="arrow-right" />
+          </LinkedButton>
         </ErrorView>
       </Layout>
     )

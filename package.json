@@ -1,23 +1,17 @@
 {
   "name": "@alexandernanberg/hej",
   "version": "1.0.0",
-  "description": "",
+  "description": "Minimalistic chat app",
   "author": "Alexander Nanberg <alex.nanberg@hotmail.com> (https://alexandernanberg.com)",
   "repository": {
     "type": "git",
     "url": "https://github.com/alexandernanberg/hej"
   },
-  "browserslist": [
-    "> 5% in SE",
-    "latest 2 Firefox versions",
-    "latest 2 iOS versions",
-    "not dead"
-  ],
   "scripts": {
-    "start": "NODE_ENV=production node server",
-    "dev": "nodemon server",
+    "start": "next start",
+    "dev": "next",
     "build": "next build",
-    "lint": "eslint 'src/**/*.js' && stylelint 'src/**/*.js'"
+    "lint": "eslint . && stylelint **/*.js"
   },
   "husky": {
     "hooks": {
@@ -34,36 +28,28 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.4",
     "@fortawesome/free-solid-svg-icons": "^5.3.1",
-    "auth0-js": "^9.7.3",
-    "body-parser": "^1.18.3",
-    "cookie": "^0.3.1",
-    "cookie-parser": "^1.4.3",
-    "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "formin": "^0.5.0",
-    "js-cookie": "^2.2.0",
-    "nanoid": "^1.2.3",
-    "next": "^7.0.0",
-    "now-env": "^3.1.0",
+    "@styled-system/core": "^5.0.5",
+    "dotenv": "^8.0.0",
+    "firebase": "^6.2.2",
+    "formin": "^0.11.0",
+    "next": "^9.0.0",
     "prop-types": "^15.6.2",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-error-boundary": "^1.2.3",
-    "socket.io": "^2.1.1",
-    "socket.io-client": "^2.1.1",
-    "styled-components": "^4.0.0-beta.8",
-    "styled-reset": "^1.3.7",
-    "styled-system": "^3.0.2"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-is": "^16.8.6",
+    "react-window": "^1.8.5",
+    "styled-components": "^5.0.0-beta.5",
+    "styled-normalize": "^8.0.6"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^9.0.1",
     "babel-plugin-styled-components": "^1.6.0",
     "eslint": "^5.4.0",
     "eslint-config-alexandernanberg": "^1.4.0",
-    "husky": "^1.1.0",
-    "lint-staged": "^7.2.2",
-    "nodemon": "^1.18.4",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.0.0",
     "prettier": "^1.14.2",
-    "stylelint": "^9.5.0",
+    "stylelint": "^10.0.0",
     "stylelint-config-alexandernanberg": "^1.0.0"
   }
 }

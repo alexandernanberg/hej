@@ -1,115 +1,50 @@
 import React from 'react'
-import Router from 'next/router'
-import io from 'socket.io-client'
-import Formin from 'formin'
-import auth from '../lib/auth'
+import { useFormin } from 'formin'
 import Layout from '../components/Layout'
-import Text, { H1 } from '../components/Text'
+import Container from '../components/Container'
+import { Heading } from '../components/Typography'
 import Button from '../components/Button'
 import TextField from '../components/TextField'
-import Spacer from '../components/Spacer'
 import Icon from '../components/Icon'
-import Loader from '../components/Loader'
-import Form from '../components/Form'
-import FillSpace from '../components/FillSpace'
-import { redirect } from '../lib/utils'
+import Box from '../components/Box'
 
-export default class Login extends React.Component {
-  static getInitialProps(context) {
-    if (auth.isAuthenticated(context)) {
-      redirect(context, '/')
-    }
+export default function LoginPage() {
+  const { getFormProps, getInputProps, isSubmitting } = useFormin({
+    onSubmit: () => {},
+  })
 
-    return {}
-  }
-
-  state = {
-    isAwaiting: false,
-  }
-
-  componentDidMount() {
-    this.socket = io()
-    this.socket.on('confirm', this.handleConfirmation)
-  }
-
-  componentWillUnmount() {
-    this.socket.off('confirm', this.handleConfirmation)
-    this.socket.close()
-  }
-
-  handleConfirmation = () => {
-    Router.push('/')
-  }
-
-  onSubmit = ({ values: { email }, setSubmitting }) => {
-    auth
-      .login({
-        email,
-      })
-      .then((res) => {
-        // TODO: Handle use redirect param
-        // Router.replace('/')
-        console.log('done', res)
-        this.setState({ isAwaiting: true })
-      })
-      .catch((e) => {
-        // TODO: Display error message
-        console.error(e)
-        setSubmitting(false)
-      })
-  }
-
-  render() {
-    const { isAwaiting } = this.state
-
-    return (
-      <Layout title="Login">
-        <FillSpace>
-          <Formin onSubmit={this.onSubmit}>
-            {({ getFormProps, getInputProps, values, isSubmitting }) => {
-              if (!isAwaiting) {
-                return (
-                  <Form {...getFormProps()} autoComplete="nope">
-                    <H1>
-                      Hej{' '}
-                      <span role="img" aria-label="wave">
-                        👋
-                      </span>
-                    </H1>
-                    <Spacer h={5} />
-                    <TextField
-                      type="email"
-                      label="Email"
-                      {...getInputProps({ name: 'email' })}
-                      required
-                    />
-                    <Spacer h={3} />
-                    <Button type="submit" loading={isSubmitting}>
-                      <span>Login</span>
-                      <Icon glyph="sign-in-alt" />
-                    </Button>
-                  </Form>
-                )
-              }
-
-              return (
-                <>
-                  <H1>Awaiting confirmation</H1>
-                  <Spacer h={3} />
-                  <Text>
-                    We sent an email to <b>{values.email}</b>. Please login with
-                    the provided link.
-                  </Text>
-                  <Spacer h={3} />
-                  <Text>Waiting for your confirmation...</Text>
-                  <Spacer h={1} />
-                  <Loader />
-                </>
-              )
-            }}
-          </Formin>
-        </FillSpace>
-      </Layout>
-    )
-  }
+  return (
+    <Layout title="Login">
+      <Container variant="small">
+        <form {...getFormProps()} method="POST" autoComplete="false">
+          <Box cover alignItems="stretch" p={6}>
+            <Heading variant="h1" mb={4}>
+              Hej{' '}
+              <span role="img" aria-label="wave">
+                👋
+              </span>
+            </Heading>
+            <Box mb={2}>
+              <TextField
+                type="email"
+                label="Email"
+                required
+                {...getInputProps({ name: 'email' })}
+              />
+              <TextField
+                type="password"
+                label="Password"
+                required
+                {...getInputProps({ name: 'password' })}
+              />
+            </Box>
+            <Button type="submit" busy={isSubmitting}>
+              <span>Login</span>
+              <Icon glyph="sign-in-alt" />
+            </Button>
+          </Box>
+        </form>
+      </Container>
+    </Layout>
+  )
 }

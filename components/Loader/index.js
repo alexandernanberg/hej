@@ -1,5 +1,5 @@
 import React from 'react'
-import FillSpace from '../FillSpace'
+import Box from '../Box'
 import { Spinner, Blade } from './style'
 
 export default function Loader(props) {
@@ -25,8 +25,8 @@ export function LoadingScreen({ pastDelay }) {
   if (!pastDelay) return null
 
   return (
-    <FillSpace>
+    <Box cover>
       <Loader />
-    </FillSpace>
+    </Box>
   )
 }

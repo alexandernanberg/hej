@@ -1,4 +1,12 @@
 import styled, { css } from 'styled-components'
+import {
+  rem,
+  spacing,
+  durations,
+  easings,
+  fontFamily,
+  colors,
+} from '../../style'
 
 export const Label = styled.label`
   position: absolute;
@@ -8,15 +16,16 @@ export const Label = styled.label`
   line-height: inherit;
   text-align: left;
   transform-origin: top left;
-  color: var(--gray500);
-  transform: translateY(var(--space-5));
+  color: ${colors.gray500};
+  transform: translateY(${spacing(6)});
   cursor: text;
-  transition: transform var(--duration-fast) var(--ease-out-quad);
+  will-change: transform;
+  transition: transform ${durations.fast} ${easings.easeOutQuad};
 `
 
 export const Input = styled.input`
-  margin-top: var(--space-3);
-  padding: var(--space-3) 0;
+  margin-top: ${spacing(3)};
+  padding: ${spacing(3)} 0;
   border: none;
   appearance: none;
   font: inherit;
@@ -29,7 +38,7 @@ export const Input = styled.input`
   }
 
   &:placeholder {
-    color: var(--gray200);
+    color: ${colors.gray200};
     line-height: normal;
   }
 
@@ -42,9 +51,9 @@ export const Wrapper = styled.div`
   position: relative;
   display: inline-flex;
   flex-direction: column;
-  margin-bottom: var(--space-4);
-  font-family: var(--font-family);
-  font-size: 1.6rem;
+  margin-bottom: ${spacing(4)};
+  font-family: ${fontFamily};
+  font-size: ${rem(16)};
   line-height: 1.2em;
   color: white;
 
@@ -59,7 +68,7 @@ export const Wrapper = styled.div`
     pointer-events: none;
     background-color: white;
     transform-origin: 100% 100%;
-    transition: all var(--duration-fast) var(--ease-out-quad);
+    transition: all ${durations.fast} ${easings.easeOutQuad};
   }
 
   &:hover {

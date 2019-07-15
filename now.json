@@ -1,7 +1,6 @@
 {
   "name": "hej",
   "alias": "hej",
-  "regions": [
-    "bru"
-  ]
+  "version": 2,
+  "regions": ["bru"]
 }

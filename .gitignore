@@ -7,6 +7,9 @@ yarn.lock
 # Build
 .next
 
+# Environment
+.env
+
 # Misc
 .vscode
 .DS_Store

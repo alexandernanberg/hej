@@ -1,44 +1,42 @@
 import React from 'react'
 import Layout from '../components/Layout'
-import FillSpace from '../components/FillSpace'
-import Button from '../components/Button'
+import Box from '../components/Box'
+import Container from '../components/Container'
 import NoSSR from '../components/NoSSR'
 import Loader from '../components/Loader'
-import Icon from '../components/Icon'
-import Spacer from '../components/Spacer'
-import Text, { H1 } from '../components/Text'
-import auth from '../lib/auth'
-import { redirect } from '../lib/utils'
+import { Heading, Text } from '../components/Typography'
+import { List, ListItem } from '../components/List'
 
-export default class Index extends React.Component {
-  static getInitialProps(context) {
-    if (!auth.isAuthenticated(context)) {
-      redirect(context, '/login')
-    }
+const conversations = [...Array(20).keys()]
 
-    return {}
-  }
-
-  render() {
-    return (
-      <Layout>
-        <FillSpace>
-          <H1>Messages</H1>
-          <Spacer h={3} />
-          <NoSSR onSSR={<Loader />}>
-            <Text>List all the conversations...</Text>
+export default function HomePage() {
+  return (
+    <Layout>
+      <Container pt={8}>
+        <Heading variant="h1" mb={6}>
+          Messages
+        </Heading>
+        <Box minHeight={40} justifyContent="center" alignItems="center">
+          <NoSSR fallback={<Loader />}>
+            <List>
+              {conversations.map(conversation => (
+                <ListItem key={conversation}>
+                  <Box width={12} height={12} bg="gray" mr={4} flexShrink={0} />
+                  <div>
+                    <Text mb={0}>
+                      <strong>Steve Doe</strong>
+                    </Text>
+                    <Text mb={0}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Ipsa, neque.
+                    </Text>
+                  </div>
+                </ListItem>
+              ))}
+            </List>
           </NoSSR>
-          <Spacer h={6} />
-          <Button
-            onClick={() => {
-              auth.logout()
-            }}
-          >
-            <span>Sign out</span>
-            <Icon glyph="sign-out-alt" />
-          </Button>
-        </FillSpace>
-      </Layout>
-    )
-  }
+        </Box>
+      </Container>
+    </Layout>
+  )
 }

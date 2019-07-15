@@ -1,6 +1,6 @@
 import React from 'react'
 import Meta from './Meta'
-import { GlobalStyle } from '../lib/style'
+import { GlobalStyle } from '../style'
 
 export default function Layout({ children, title }) {
   return (

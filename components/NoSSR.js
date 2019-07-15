@@ -1,27 +1,16 @@
-/**
- * This is a modified version of react-no-ssr.
- * MIT License: https://github.com/kadirahq/react-no-ssr/blob/master/LICENSE
- */
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 
-import React from 'react'
+const Fallback = () => null
 
-const DefaultOnSSR = () => null
+const useEnhancedEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
-class NoSSR extends React.Component {
-  state = {
-    canRender: false,
-  }
+export default function NoSSR({ fallback = <Fallback />, children }) {
+  const [isSSR, setSSR] = useState(true)
 
-  componentDidMount() {
-    this.setState({ canRender: true })
-  }
+  useEnhancedEffect(() => {
+    setSSR(false)
+  })
 
-  render() {
-    const { children, onSSR = <DefaultOnSSR /> } = this.props
-    const { canRender } = this.state
-
-    return canRender ? children : onSSR
-  }
+  return isSSR ? fallback : children
 }
-
-export default NoSSR

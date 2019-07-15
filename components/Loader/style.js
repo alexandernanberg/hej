@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components'
+import { rem, colors } from '../../style'
 
-export const spin = keyframes`
+const spin = keyframes`
   0% {
     opacity: 0.85;
   }
@@ -18,10 +19,10 @@ export const Spinner = styled.div`
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  height: 2.4rem;
-  width: 2.4rem;
+  height: ${rem(24)};
+  width: ${rem(24)};
   border-radius: 50%;
-  color: ${props => (props.gray ? 'var(--gray800)' : 'white')};
+  color: ${props => (props.gray ? colors.gray800 : 'white')};
 `
 
 export const Blade = styled.div`

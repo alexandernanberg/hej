@@ -8,6 +8,7 @@ export const Svg = styled.svg`
   vertical-align: -0.125em;
   height: 1em;
   overflow: visible;
+  flex-shrink: 0;
   font-size: inherit;
   fill: currentColor;
 
