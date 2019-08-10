@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { rem, fontFamily } from '../style'
-import { margin, text, textColor } from '../style/system'
+import { margin, text, textColor, variant } from '../style/system'
 
 const base = css(text, textColor.withDefaults({ textColor: 'white' }))
 
@@ -17,32 +17,25 @@ export const Text = styled.p`
   }
 `
 
-function getHeadingVariant({ variant }) {
-  switch (variant) {
-    case 'h1':
-      return css`
-        font-size: ${rem(40)};
-      `
-    case 'h2':
-      return css`
-        font-size: ${rem(24)};
-      `
-
-    default:
-      return null
-  }
-}
+const headerVariants = variant({
+  h1: css`
+    font-size: ${rem(40)};
+  `,
+  h2: css`
+    font-size: ${rem(24)};
+  `,
+})
 
 const StyledHeading = styled.h1`
   ${base}
   font-weight: bold;
   line-height: 1.2em;
   ${margin.withDefaults({ mb: 1, mt: 0 })}
-  ${getHeadingVariant}
+  ${headerVariants}
 `
 
-export function Heading({ variant, as, ...props }) {
-  const Comp = as || variant
+export function Heading({ as, ...props }) {
+  const component = as || props.variant
 
-  return <StyledHeading as={Comp} variant={variant} {...props} />
+  return <StyledHeading as={component} {...props} />
 }
