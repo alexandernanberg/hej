@@ -21,6 +21,22 @@ function transformSpacing(n) {
   return n
 }
 
+// Variant
+
+export function variant(v) {
+  return props => {
+    if (v[props.variant]) {
+      return v[props.variant]
+    }
+
+    if (v.default) {
+      return v.default
+    }
+
+    return null
+  }
+}
+
 // Color
 
 export const textColor = system({ textColor: { property: 'color' } })
