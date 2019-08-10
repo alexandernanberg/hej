@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../components/Layout'
 import Icon from '../components/Icon'
-import { LinkedButton } from '../components/Button'
+import Button from '../components/Button'
 import { Heading } from '../components/Typography'
 import Box from '../components/Box'
 
@@ -55,10 +55,10 @@ export default class ErrorPage extends React.Component {
     return (
       <Layout title={title}>
         <ErrorView title={title} emoji={emoji}>
-          <LinkedButton href="/">
+          <Button href="/">
             <span>Go to startpage</span>
             <Icon glyph="arrow-right" />
-          </LinkedButton>
+          </Button>
         </ErrorView>
       </Layout>
     )
