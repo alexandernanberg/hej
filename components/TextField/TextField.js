@@ -1,21 +1,24 @@
-import React, { useState } from 'react'
+import React, { forwardRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Wrapper, Label, Input } from './style'
 import { wrapEvents } from '../../lib/utils'
 import useId from '../../lib/useId'
 import useControlledState from '../../lib/useControlledState'
 
-export default function TextField({
-  id: controlledId,
-  value: controlledValue,
-  defaultValue = '',
-  label,
-  onChange,
-  onFocus,
-  onInvalid,
-  onBlur,
-  ...props
-}) {
+const TextField = forwardRef(function TextField(
+  {
+    id: controlledId,
+    value: controlledValue,
+    defaultValue = '',
+    label,
+    onChange,
+    onFocus,
+    onInvalid,
+    onBlur,
+    ...props
+  },
+  ref,
+) {
   const [value, setValue] = useControlledState(
     controlledValue,
     null,
@@ -31,6 +34,7 @@ export default function TextField({
     <Wrapper isFocused={isFocused} isActive={isFocused || isActive || !!value}>
       <Label htmlFor={id}>{label}</Label>
       <Input
+        ref={ref}
         id={id}
         value={value}
         onChange={wrapEvents(onChange, event => {
@@ -48,15 +52,17 @@ export default function TextField({
       />
     </Wrapper>
   )
-}
+})
 
 TextField.propTypes = {
-  label: PropTypes.string.isRequired,
   id: PropTypes.string,
-  defaultValue: PropTypes.string,
   value: PropTypes.string,
+  defaultValue: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
   onInvalid: PropTypes.func,
 }
+
+export default TextField
