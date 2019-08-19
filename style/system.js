@@ -23,10 +23,10 @@ function transformSpacing(n) {
 
 // Variant
 
-export function variant(v) {
+export function variant(v, prop = 'variant') {
   return props => {
-    if (v[props.variant]) {
-      return v[props.variant]
+    if (v[props[prop]]) {
+      return v[props[prop]]
     }
 
     if (v.default) {

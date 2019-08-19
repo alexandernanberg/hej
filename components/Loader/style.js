@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import { rem, colors } from '../../style'
+import { variant } from '../../style/system'
 
 const spin = keyframes`
   0% {
@@ -22,7 +23,13 @@ export const Spinner = styled.div`
   height: ${rem(24)};
   width: ${rem(24)};
   border-radius: 50%;
-  color: ${props => (props.gray ? colors.gray800 : 'white')};
+  color: ${variant(
+    {
+      gray: colors.gray800,
+      default: 'white',
+    },
+    'color',
+  )};
 `
 
 export const Blade = styled.div`

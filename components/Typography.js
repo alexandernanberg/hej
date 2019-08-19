@@ -17,21 +17,19 @@ export const Text = styled.p`
   }
 `
 
-const headerVariants = variant({
-  h1: css`
-    font-size: ${rem(40)};
-  `,
-  h2: css`
-    font-size: ${rem(24)};
-  `,
-})
-
 const StyledHeading = styled.h1`
   ${base}
   font-weight: bold;
   line-height: 1.2em;
   ${margin.withDefaults({ mb: 1, mt: 0 })}
-  ${headerVariants}
+  ${variant({
+    h1: css`
+      font-size: ${rem(40)};
+    `,
+    h2: css`
+      font-size: ${rem(24)};
+    `,
+  })}
 `
 
 export function Heading({ as, ...props }) {
