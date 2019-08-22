@@ -43,62 +43,62 @@ export const Blade = styled.div`
   animation: ${spin} 1s linear infinite;
 
   &:nth-child(1) {
-    animation-delay: -1.6666666667s;
+    animation-delay: calc(var(--spinner-delay) + -1.6666666667s);
     transform: rotate(30deg) translate(0, -150%);
   }
 
   &:nth-child(2) {
-    animation-delay: -1.5833333333s;
+    animation-delay: calc(var(--spinner-delay) + -1.5833333333s);
     transform: rotate(60deg) translate(0, -150%);
   }
 
   &:nth-child(3) {
-    animation-delay: -1.5s;
+    animation-delay: calc(var(--spinner-delay) + -1.5s);
     transform: rotate(90deg) translate(0, -150%);
   }
 
   &:nth-child(4) {
-    animation-delay: -1.4166666667s;
+    animation-delay: calc(var(--spinner-delay) + -1.4166666667s);
     transform: rotate(120deg) translate(0, -150%);
   }
 
   &:nth-child(5) {
-    animation-delay: -1.3333333333s;
+    animation-delay: calc(var(--spinner-delay) + -1.3333333333s);
     transform: rotate(150deg) translate(0, -150%);
   }
 
   &:nth-child(6) {
-    animation-delay: -1.25s;
+    animation-delay: calc(var(--spinner-delay) + -1.25s);
     transform: rotate(180deg) translate(0, -150%);
   }
 
   &:nth-child(7) {
-    animation-delay: -1.1666666667s;
+    animation-delay: calc(var(--spinner-delay) + -1.1666666667s);
     transform: rotate(210deg) translate(0, -150%);
   }
 
   &:nth-child(8) {
-    animation-delay: -1.0833333333s;
+    animation-delay: calc(var(--spinner-delay) + -1.0833333333s);
     transform: rotate(240deg) translate(0, -150%);
   }
 
   &:nth-child(9) {
-    animation-delay: -1s;
+    animation-delay: calc(var(--spinner-delay) + -1s);
     transform: rotate(270deg) translate(0, -150%);
   }
 
   &:nth-child(10) {
-    animation-delay: -0.9166666667s;
+    animation-delay: calc(var(--spinner-delay) + -0.9166666667s);
     transform: rotate(300deg) translate(0, -150%);
   }
 
   &:nth-child(11) {
-    animation-delay: -0.8333333333s;
+    animation-delay: calc(var(--spinner-delay) + -0.8333333333s);
     transform: rotate(330deg) translate(0, -150%);
   }
 
   &:nth-child(12) {
-    animation-delay: -0.75s;
+    animation-delay: calc(var(--spinner-delay) + -0.75s);
     transform: rotate(360deg) translate(0, -150%);
   }
 `
